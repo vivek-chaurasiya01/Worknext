@@ -1,0 +1,34 @@
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body {
+  max-width: 2000px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+/* Remove Google Translate tooltip & highlight */
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight {
+  display: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Kill Balloon Popup */
+iframe.goog-te-balloon-frame,
+iframe.goog-te-banner-frame,
+iframe.goog-te-menu-frame,
+iframe.goog-te-gadget-frame {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}

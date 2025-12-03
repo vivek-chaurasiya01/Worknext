@@ -1,0 +1,160 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+/* Global font */
+body {
+  font-family: "Manrope", sans-serif;
+  top: 0 !important;
+}
+
+/* Slide from left */
+@keyframes slideFromLeft {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+}
+.animate-slideFromLeft {
+  animation: slideFromLeft 0.35s ease-out;
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out;
+}
+
+/* Fade in up */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+/* FLOAT animation (only one correct version) */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Floating dots */
+@keyframes floatDots {
+  0% { transform: translateY(0); opacity: .4; }
+  50% { transform: translateY(-20px); opacity: 1; }
+  100% { transform: translateY(0); opacity: .4; }
+}
+.floating-dot {
+  animation: floatDots 3s ease-in-out infinite;
+}
+
+/* Gradient text */
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Fade + Scale animations */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeSmall {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes cardFade {
+  0% { opacity: 0; transform: scale(0.97); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes tagPop {
+  0% { opacity: 0; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.animate-fadeUp { animation: fadeUp .6s ease-out forwards; }
+.animate-fadeSmall { animation: fadeSmall .5s ease-out forwards; }
+.animate-cardFade { animation: cardFade .6s ease-out forwards; }
+.animate-tagPop { animation: tagPop .4s ease-out forwards; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb {
+  background:  green;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(12, 150, 12)
+}
+
+/* Dialog Blur */
+.p-dialog-mask.p-component-overlay {
+  backdrop-filter: blur(6px);
+  background: rgba(0, 40, 32, 0.75) !important;
+}
+
+/* Dialog Popup */
+.customDialog .p-dialog {
+  animation: popupScale 0.3s ease-out !important;
+  border-radius: 20px !important;
+  overflow: hidden;
+}
+@keyframes popupScale {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.customDialog .p-dialog-header {
+  background: #0F4F3C;
+  color: white;
+  padding: 18px !important;
+}
+.customDialog .p-dialog-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.customDialog .p-dialog-header-icon {
+  color: white !important;
+  scale: 1.2;
+}
+
+/* GOOGLE TRANSLATE FIX */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+.goog-logo-link,
+.goog-te-gadget span,
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+.VIpgJd-ZVi9od-xl07Ob-OEVmcd {
+  display: none !important;
+}
+
+.goog-te-gadget-icon {
+  display: inline-block !important;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 22s linear infinite;
+}

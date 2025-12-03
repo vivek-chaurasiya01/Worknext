@@ -1,0 +1,596 @@
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { FaCheck } from "react-icons/fa";
+import { toast } from "react-toastify";
+
+import {
+  FaRocket,
+  FaBullhorn,
+  FaPalette,
+  FaLaptopCode,
+  FaRobot,
+  FaChartLine,
+  FaGlobe,
+  FaEnvelope,
+  FaPhone,
+  FaInstagram,
+  FaFacebookF,
+  FaTwitter,
+  FaYoutube,
+  FaCalendarCheck,
+  FaChartBar,
+  FaTimes,
+} from "react-icons/fa";
+import Footer from "../Component/Footer";
+import axios from "axios";
+const DemoPage = () => {
+  const api_url = import.meta.env.VITE_API_URL;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    message: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value, files } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: files ? files[0] : value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("form is sumit");
+
+    const data = axios.post(`${api_url}/api/demo`, formData);
+    setIsModalOpen(false);
+    console.log(data);
+
+    toast.success("Form data saved successfully");
+    // Reset form
+    setFormData({
+      name: "",
+      email: "",
+      mobile: "",
+      message: "",
+    });
+  };
+  const bubbles = [
+    { size: 8, x: 10, y: 20, delay: 0 },
+    { size: 12, x: 80, y: 50, delay: 1 },
+    { size: 6, x: 40, y: 80, delay: 0.5 },
+    { size: 10, x: 70, y: 10, delay: 1.5 },
+  ];
+  const services = [
+    {
+      icon: <FaBullhorn className="text-3xl text-emerald-600" />,
+      title: "Digital Marketing",
+      description:
+        "Boost your online presence with our comprehensive digital marketing solutions.",
+      features: [
+        "SEO Optimization",
+        "Social Media Management",
+        "Content Marketing Strategy",
+        "Google & Meta Ads",
+      ],
+    },
+    {
+      icon: <FaPalette className="text-3xl text-emerald-600" />,
+      title: "Graphic Design",
+      description: "Professional design services to make your brand stand out.",
+      features: [
+        "Logo & Brand Identity",
+        "Business Cards & Stationery",
+        "Marketing Materials",
+        "Social Media Graphics",
+      ],
+    },
+    {
+      icon: <FaLaptopCode className="text-3xl text-emerald-600" />,
+      title: "Web & App Development",
+      description:
+        "Custom websites and applications tailored to your business needs.",
+      features: [
+        "Website Design & Development",
+        "iOS/Android Apps",
+        "E-commerce Solutions",
+        "Responsive Design",
+      ],
+    },
+    {
+      icon: <FaRobot className="text-3xl text-emerald-600" />,
+      title: "IT & AI Solutions",
+      description: "Cutting-edge technology solutions for modern businesses.",
+      features: [
+        "Billing & POS Software",
+        "AI Chatbots",
+        "SaaS Development",
+        "Task Management Systems",
+      ],
+    },
+    {
+      icon: <FaChartLine className="text-3xl text-emerald-600" />,
+      title: "Business Consulting",
+      description: "Strategic guidance to grow and optimize your business.",
+      features: [
+        "Business Setup Support",
+        "Market Entry Guidance",
+        "HR Policy Development",
+        "IT Setup Advisory",
+      ],
+    },
+  ];
+
+  return (
+    <div>
+      {/* Hero Section */}
+      <section
+        className="relative py-25 mt-20 overflow-hidden bg-linear-to-b from-[#088667] via-[#177458] to-[#024a38]
+      
+          text-white"
+      >
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920&auto=format&fit=crop')] opacity-10 bg-cover bg-center"></div>
+        {/* Background gradient + bubbles */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-linear-to-br from-green-400/10 to-emerald-600/10"></div>
+
+          {/* Floating animated bubbles */}
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+            {/* LEFT CONTENT */}
+            <div className="lg:w-1/2 space-y-6">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium mb-6 animate-bounce-slow">
+                <span className="w-2 h-2 bg-emerald-500 rounded-full mr-2"></span>
+                Complete Business Solutions
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                Transform Your{" "}
+                <span className="text-emerald-400">Business</span> With Our
+                Digital Solutions
+              </h1>
+              <p className="text-lg text-emerald-200 mb-8 leading-relaxed">
+                From digital marketing to AI solutions, we provide everything
+                your business needs to succeed in the digital age. Get a
+                personalized demo to see how we can help.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="bg-linear-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 flex items-center justify-center space-x-3 shadow-lg hover:shadow-xl hover:shadow-emerald-200"
+                >
+                  <FaCalendarCheck className="text-xl" />
+                  <span>Request Free Demo</span>
+                </button>
+                <a
+                  href="#data"
+                  className="border-2 border-emerald-500 text-emerald-400 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-emerald-50/20 transition-all duration-300 "
+                  id="#Service"
+                >
+                  View Our Work
+                </a>
+              </div>
+
+              {/* STATS */}
+              <div className="flex items-center mt-12 space-x-8 text-emerald-200">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-white">500+</div>
+                  <div className="text-sm">Projects Completed</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-white">98%</div>
+                  <div className="text-sm">Client Satisfaction</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-white">50+</div>
+                  <div className="text-sm">Team Experts</div>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT CARD */}
+            <div className="lg:w-1/2 relative">
+              <motion.div
+                className="bg-linear-to-br from-emerald-500 to-emerald-700 rounded-3xl p-8 text-white shadow-2xl relative "
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="text-center mb-6">
+                  <FaChartBar className="text-5xl mx-auto mb-4 text-emerald-200" />
+                  <h3 className="text-2xl font-bold mb-2">
+                    See Our Solutions in Action
+                  </h3>
+                  <p className="text-emerald-100">
+                    Book a personalized demo today
+                  </p>
+                </div>
+                <div className="space-y-4">
+                  {[
+                    "Customized solutions",
+                    "Expert consultation",
+                    "No commitment required",
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center space-x-3">
+                      <FaCheck className="text-emerald-200" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Floating icons */}
+              <motion.div
+                className="absolute -top-6 -left-6 w-20 h-20 bg-white rounded-xl shadow-lg flex items-center justify-center"
+                animate={{ y: [0, -10, 0] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 4,
+                  ease: "easeInOut",
+                }}
+              >
+                <FaBullhorn className="text-2xl text-emerald-600" />
+              </motion.div>
+              <motion.div
+                className="absolute -bottom-6 -right-6 w-16 h-16 bg-white rounded-xl shadow-lg flex items-center justify-center"
+                animate={{ y: [0, 10, 0] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 3,
+                  ease: "easeInOut",
+                }}
+              >
+                <FaLaptopCode className="text-xl text-emerald-600" />
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <style jsx>{`
+        .animate-bounce-slow {
+          animation: bounce 3s infinite;
+        }
+      `}</style>
+
+      {/* Services Section */}
+      <section
+        id="data"
+        className="relative py-20 bg-white overflow-hidden"
+        Service
+      >
+        {/* Floating bubbles */}
+        {bubbles.map((bubble, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ y: 0 }}
+            animate={{ y: [0, -20, 0] }}
+            transition={{ repeat: Infinity, duration: 6, delay: bubble.delay }}
+            className="absolute rounded-full bg-emerald-100 opacity-40"
+            style={{
+              width: bubble.size,
+              height: bubble.size,
+              top: `${bubble.y}%`,
+              left: `${bubble.x}%`,
+            }}
+          />
+        ))}
+
+        <div className="container mx-auto px-4 relative z-10 Service">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 group relative overflow-hidden"
+              >
+                <div className="mb-5">
+                  <div className="bg-emerald-100 w-16 h-16 rounded-xl flex items-center justify-center group-hover:bg-emerald-200 transition-colors duration-300">
+                    {service.icon}
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 mb-5">{service.description}</p>
+                <ul className="space-y-3">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center text-gray-700">
+                      <div className="bg-emerald-100 p-1 rounded-full mr-3">
+                        <FaCheck className="text-emerald-600 text-xs" />
+                      </div>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Bubble hover effect inside each card */}
+                <motion.div
+                  className="absolute top-0 left-0 w-full h-full pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="absolute w-3 h-3 bg-emerald-200 rounded-full top-5 left-10 animate-bounce-slow"></div>
+                  <div className="absolute w-2 h-2 bg-emerald-300 rounded-full top-20 left-24 animate-bounce-slow delay-1000"></div>
+                  <div className="absolute w-4 h-4 bg-emerald-100 rounded-full top-32 left-12 animate-bounce-slow delay-500"></div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section
+        className="py-16 relative bg-linear-to-b from-[#088667] via-[#177458] to-[#024a38]
+          text-white"
+      >
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Ready to Transform Your Business?
+          </h2>
+          <p className="text-xl text-emerald-100 max-w-2xl mx-auto mb-8">
+            Join hundreds of successful businesses that have grown with our
+            solutions
+          </p>
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="bg-white text-emerald-600 px-10 py-4 rounded-xl font-semibold text-lg hover:bg-emerald-50 transition-all duration-300 flex items-center space-x-3 shadow-lg mx-auto"
+          >
+            <FaCalendarCheck className="text-xl" />
+            <span>Get Your Free Demo Now</span>
+          </button>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="bg-white/90 backdrop-blur-xl shadow-2xl rounded-3xl p-8 max-w-5xl mx-auto border border-gray-100">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              {/* LEFT SIDE: Contact Info */}
+              <div>
+                <h3 className="text-3xl font-bold text-gray-800 mb-6">
+                  Get In Touch
+                </h3>
+                <div className="space-y-5">
+                  <div className="flex items-center text-gray-700 p-4 rounded-xl hover:bg-emerald-50 transition-colors duration-300 shadow-sm">
+                    <div className="bg-emerald-100 p-3 rounded-xl mr-4">
+                      <FaGlobe className="text-emerald-600 text-xl" />
+                    </div>
+                    <div>
+                      <div className="font-medium">Website</div>
+                      <div className="text-sm text-gray-600">
+                        www.worknestconnect.com
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center text-gray-700 p-4 rounded-xl hover:bg-emerald-50 transition-colors duration-300 shadow-sm">
+                    <div className="bg-emerald-100 p-3 rounded-xl mr-4">
+                      <FaEnvelope className="text-emerald-600 text-xl" />
+                    </div>
+                    <div>
+                      <div className="font-medium">Email</div>
+                      <div className="text-sm text-gray-600">
+                        info@worknestconnect.com
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center text-gray-700 p-4 rounded-xl hover:bg-emerald-50 transition-colors duration-300 shadow-sm">
+                    <div className="bg-emerald-100 p-3 rounded-xl mr-4">
+                      <FaPhone className="text-emerald-600 text-xl" />
+                    </div>
+                    <div>
+                      <div className="font-medium">Phone</div>
+                      <div className="text-sm text-gray-600">
+                        +974 3117 5515
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* SOCIAL ICONS */}
+                <div className="mt-8">
+                  <h4 className="font-semibold text-gray-800 mb-4">
+                    Follow Us
+                  </h4>
+                  <div className="flex space-x-4">
+                    <a
+                      href="https://www.instagram.com/worknestconnect"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-emerald-100 text-emerald-600 p-3 rounded-full hover:bg-emerald-200 transition duration-300 shadow-md"
+                    >
+                      <FaInstagram />
+                    </a>
+
+                    <a
+                      href="https://www.facebook.com/share/1FYPKKECea/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-emerald-100 text-emerald-600 p-3 rounded-full hover:bg-emerald-200 transition duration-300 shadow-md"
+                    >
+                      <FaFacebookF />
+                    </a>
+
+                    <a
+                      href="https://www.x.com/Worknestconnect"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-emerald-100 text-emerald-600 p-3 rounded-full hover:bg-emerald-200 transition duration-300 shadow-md"
+                    >
+                      <FaTwitter />
+                    </a>
+
+                    <a
+                      href="https://www.youtube.com/@worknestconnect"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-emerald-100 text-emerald-600 p-3 rounded-full hover:bg-emerald-200 transition duration-300 shadow-md"
+                    >
+                      <FaYoutube />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* RIGHT SIDE: Features + Button */}
+              <div>
+                <h3 className="text-3xl font-bold text-gray-800 mb-6">
+                  Why Choose WorknestConnect?
+                </h3>
+                <div className="space-y-5 mb-6">
+                  {[
+                    {
+                      title: "End-to-End Solutions",
+                      desc: "From strategy to execution, we handle everything",
+                    },
+                    {
+                      title: "Expert Team",
+                      desc: "50+ specialists across various domains",
+                    },
+                    {
+                      title: "Proven Results",
+                      desc: "98% client satisfaction rate",
+                    },
+                  ].map((item, idx) => (
+                    <div className="flex items-start" key={idx}>
+                      <div className="bg-emerald-100 p-2 rounded-lg mt-1 mr-4 shadow-sm">
+                        <FaCheck className="text-emerald-600 text-sm" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-800">
+                          {item.title}
+                        </h4>
+                        <p className="text-gray-600 text-sm">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* SCHEDULE CONSULTATION BUTTON */}
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="w-full bg-linear-to-r from-emerald-600 to-emerald-700 text-white py-3 rounded-2xl font-semibold hover:scale-105 transition-transform duration-300 flex items-center justify-center space-x-2 shadow-lg"
+                >
+                  <FaCalendarCheck />
+                  <span>Schedule Consultation</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <Footer />
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4 z-50 backdrop-blur-sm">
+          <div className="bg-black/80 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] mt-sm[200px] mt-[100px] overflow-y-auto animate-fade-in">
+            <div className="bg-linear-to-r from-emerald-500 to-emerald-700 text-white p-6 rounded-t-2xl flex justify-between items-center">
+              <h2 className="text-2xl font-bold">Request a Demo</h2>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="text-white hover:text-emerald-200 transition duration-300 p-1 rounded-full hover:bg-white/10"
+              >
+                <FaTimes className="text-xl" />
+              </button>
+            </div>
+            <div className="p-6">
+              <form onSubmit={handleSubmit} className="space-y-6 text-white">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-white font-medium mb-2">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition duration-300"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-white font-medium mb-2">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition duration-300"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-white font-medium mb-2">
+                      Mobile Number
+                    </label>
+                    <input
+                      type="tel"
+                      name="mobile"
+                      value={formData.mobile}
+                      onChange={handleInputChange}
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition duration-300"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-white font-medium mb-2">
+                      Message
+                    </label>
+                    <input
+                      type="text"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition duration-300"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-linear-to-r from-emerald-500 to-emerald-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  Submit Request
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default DemoPage;
