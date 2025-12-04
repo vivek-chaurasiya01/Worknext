@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 function TransformBussnation() {
   const api_url = import.meta.env.VITE_API_URL;
+
   const [model, setModel] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -26,7 +27,6 @@ function TransformBussnation() {
     e.preventDefault();
 
     axios.post(`${api_url}/api/demo`, formData);
-    toast.success("Form data saved successfully");
     setModel(false);
 
     setFormData({

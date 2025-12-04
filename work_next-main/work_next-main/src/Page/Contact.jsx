@@ -27,8 +27,7 @@ export default function ContactHeader() {
     message: "",
   });
 
-  const api_url =
-    import.meta.env.VITE_API_URL || "https://worknextbackend.onrender.com";
+  const api_url = import.meta.env.VITE_API_URL;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -48,13 +47,7 @@ export default function ContactHeader() {
     try {
       const response = await axios.post(
         `${api_url}/api/contact/contact`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          timeout: 10000,
-        }
+        formData
       );
 
       console.log(response);

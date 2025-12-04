@@ -41,11 +41,10 @@ const DemoPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("form is sumit");
 
-    const data = axios.post(`${api_url}/api/demo`, formData);
+    const data = await axios.post(`${api_url}/api/demo`, formData);
     setIsModalOpen(false);
     console.log(data);
 

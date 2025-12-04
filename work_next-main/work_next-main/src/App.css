@@ -32,3 +32,19 @@ iframe.goog-te-gadget-frame {
   opacity: 0 !important;
   pointer-events: none !important;
 }
+/* Google Translate popups hide */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-balloon-frame,
+.goog-text-highlight {
+    display: none !important;
+}
+
+.goog-logo-link,
+.goog-te-gadget span {
+    display: none !important;
+}
+
+/* Body shift hone se rokta hai */
+body {
+    top: 0 !important;
+}
