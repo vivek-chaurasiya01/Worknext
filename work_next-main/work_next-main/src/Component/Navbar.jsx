@@ -540,6 +540,7 @@ export default function Navbar() {
                 { path: "/", name: "Home" },
                 { path: "/about", name: "About" },
                 { path: "/contact", name: "Contact" },
+                { path: "/Project", name: "Project" },
               ].map((item) => (
                 <NavLink
                   style={({ isActive }) => ({

@@ -81,7 +81,7 @@ function Home_heading() {
         {/* MAIN HEADING */}
         <div className="w-full flex justify-center px-4">
           <img
-            src="/home.png"
+            src="/Doha_Skylines_Illustration_For_Homepage-removebg-preview.png"
             alt="hero"
             className="
       mt-20
