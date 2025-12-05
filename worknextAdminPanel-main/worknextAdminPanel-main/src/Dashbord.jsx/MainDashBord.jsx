@@ -131,9 +131,9 @@ function MainDashBord() {
             </span>
 
             <img
-              src="/public/Manager.png"
+              src="/Manager.png"
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border"
-              alt="User"
+              alt="Admin"
             />
           </div>
         </div>

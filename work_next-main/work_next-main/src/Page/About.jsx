@@ -10,16 +10,15 @@ const AboutUs = () => {
     <div className="overflow-x-hidden">
       {/* Header Section */}
       <header className="relative  mt-[50px] sm:mt-[30]  bg-linear-to-b from-[#076950] via-[#0d5640] to-[#024a38] text-white overflow-hidden ">
-               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920&auto=format&fit=crop')] opacity-10 bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1920&auto=format&fit=crop')] opacity-10 bg-cover bg-center"></div>
         {/* Background Glow */}
-<div className="absolute inset-0">
-  {/* Radial background */}
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(31,209,152,0.15),transparent_70%)]"></div>
+        <div className="absolute inset-0">
+          {/* Radial background */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(31,209,152,0.15),transparent_70%)]"></div>
 
-  {/* Top gradient line */}
-  <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-green-300 to-transparent"></div>
-</div>
-
+          {/* Top gradient line */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-green-300 to-transparent"></div>
+        </div>
 
         {/* Main Container */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-32 text-center">
@@ -108,6 +107,23 @@ const AboutUs = () => {
 
       {/* Our Component */}
       <AboutWorknest />
+
+      {/* strautre card */}
+      <div className="w-full flex justify-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-32 bg-transparent mb-20">
+        <img
+          src="/WNC Organisation structure.png"
+          alt="Structure"
+          className="
+      w-full
+      max-w-[1400px]
+      h-auto
+      object-contain
+      drop-shadow-lg
+      opacity-0
+      animate-fadeZoom
+    "
+        />
+      </div>
 
       <TransformBussnation />
       <Footer />
