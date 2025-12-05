@@ -35,6 +35,7 @@ function TransformBussnation() {
       email: "",
       mobile: "",
     });
+    toast.success("Data Send");
   };
 
   return (

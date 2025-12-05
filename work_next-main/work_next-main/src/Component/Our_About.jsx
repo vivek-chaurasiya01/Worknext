@@ -215,15 +215,14 @@ export default function AboutWorknest() {
             ))}
           </div>
         </div>
-
         {/* Team Section */}
-        <div className="mb-24">
+        {/* <div className="mb-24">
           <h3 className="text-4xl font-bold text-center mb-12 bg-linear-to-r from-emerald-400 to-green-500 bg-clip-text text-transparent">
             TEAM
           </h3>
 
           <div className="space-y-14">
-            {/* Founder & CEO Card */}
+          
             <div
               className="w-full flex flex-col md:flex-row items-center gap-10
       bg-linear-to-br from-[#032d23] via-[#064737] to-[#02251d]
@@ -231,7 +230,7 @@ export default function AboutWorknest() {
       backdrop-blur-xl transition-all duration-700
       animate-[fadeSlideUp_0.8s_ease-out]"
             >
-              {/* IMAGE */}
+            
               <div className="md:w-1/3 w-full animate-[float_4s_ease-in-out_infinite]">
                 <img
                   src="/CEO.webp"
@@ -240,7 +239,7 @@ export default function AboutWorknest() {
                 />
               </div>
 
-              {/* TEXT */}
+              
               <div className="md:w-2/3 w-full text-emerald-100 space-y-4 transition-all duration-700">
                 <h4 className="text-3xl font-bold bg-linear-to-r from-emerald-300 to-green-400 bg-clip-text text-transparent">
                   Founder & CEO
@@ -274,13 +273,13 @@ export default function AboutWorknest() {
               </div>
             </div>
 
-            {/* Managing Director Card (REVERSED) */}
+          
             <div
               className="w-full flex flex-col md:flex-row-reverse items-center gap-10
       bg-white p-10 rounded-3xl shadow-2xl border-2 border-emerald-400
       transition-all duration-700 animate-[fadeSlideUp_1s_ease-out]"
             >
-              {/* IMAGE */}
+            
               <div className="md:w-1/3 w-full animate-[float_4s_ease-in-out_infinite]">
                 <img
                   src="/Directer2.png"
@@ -289,7 +288,7 @@ export default function AboutWorknest() {
                 />
               </div>
 
-              {/* TEXT */}
+            
               <div className="md:w-2/3 w-full text-gray-800 space-y-4 transition-all duration-700">
                 <h4 className="text-3xl font-bold text-emerald-600">
                   Managing Director
@@ -302,11 +301,20 @@ export default function AboutWorknest() {
                   excellence, ensuring smooth service delivery across all
                   business verticals.
                 </p>
-                <p>At WorkNestConnect, we believe every business in Qatar deserves more than just service delivery—it deserves transformation. That is why we blend strategy, design, technology, and innovation into seamless solutions that elevate brands and accelerate growth. From digital marketing and creative design to web development, IT, AI, and business consulting, we empower our clients with systems that work smarter, look sharper, and create measurable impact. Our commitment is simple: to turn every partnership into progress and every idea into opportunity, shaping a future where businesses across the GCC thrive with confidence and clarity.
-
-Shivam Kaushal
-Managing Director
-Worknest Connect Consultants</p>
+                <p>
+                  At WorkNestConnect, we believe every business in Qatar
+                  deserves more than just service delivery—it deserves
+                  transformation. That is why we blend strategy, design,
+                  technology, and innovation into seamless solutions that
+                  elevate brands and accelerate growth. From digital marketing
+                  and creative design to web development, IT, AI, and business
+                  consulting, we empower our clients with systems that work
+                  smarter, look sharper, and create measurable impact. Our
+                  commitment is simple: to turn every partnership into progress
+                  and every idea into opportunity, shaping a future where
+                  businesses across the GCC thrive with confidence and clarity.
+                  Shivam Kaushal Managing Director Worknest Connect Consultants
+                </p>
 
                 <div className="bg-emerald-100/40 p-5 rounded-2xl border border-emerald-400/20 shadow-inner">
                   <p className="text-sm text-gray-700 leading-relaxed">
@@ -317,7 +325,7 @@ Worknest Connect Consultants</p>
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
