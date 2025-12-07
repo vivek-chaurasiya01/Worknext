@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Users, Presentation } from "lucide-react";
+import { Users, Presentation, FileText } from "lucide-react"; // Added FileText icon for Apply Form
 
 function Home() {
   const [totalContacts, setTotalContacts] = useState(0);
@@ -101,7 +101,7 @@ function Home() {
           title="Apply Form"
           count={applyForm}
           link="/Dashboard/ApplyForm"
-          icon={<Presentation size={30} />}
+          icon={<FileText size={30} />} // Different icon for clarity
           color="purple"
         />
       </div>
