@@ -275,7 +275,7 @@ function ApplyData() {
                           onClick={() => downloadCV(item.cv)}
                           className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg shadow-md hover:shadow-lg transition-all font-bold"
                         >
-                          Download
+                          Views
                         </button>
                       ) : (
                         <span className="text-gray-500 font-semibold">
