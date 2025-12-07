@@ -4,9 +4,11 @@ import { toast } from "react-toastify";
 import { Check, Megaphone, Palette, Laptop, Bot, TrendingUp, Globe, Mail, Phone, Instagram, Facebook, Twitter, Youtube, CalendarCheck, BarChart3, X } from "lucide-react";
 import Footer from "../Component/Footer";
 import axios from "axios";
+import ContactSection from "../Component/GetDemoComponent";
 const DemoPage = () => {
   const api_url = import.meta.env.VITE_API_URL;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,19 +26,24 @@ const DemoPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
-    const data = await axios.post(`${api_url}/api/demo`, formData);
-    setIsModalOpen(false);
-    console.log(data);
-
-    toast.success("Form data saved successfully");
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      mobile: "",
-      message: "",
-    });
+    try {
+      const data = await axios.post(`${api_url}/api/demo`, formData);
+      console.log(data);
+      toast.success("Form data saved successfully");
+      setIsModalOpen(false);
+      setFormData({
+        name: "",
+        email: "",
+        mobile: "",
+        message: "",
+      });
+    } catch (error) {
+      toast.error("Failed to submit form. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
   const bubbles = [
     { size: 8, x: 10, y: 20, delay: 0 },
@@ -334,144 +341,8 @@ const DemoPage = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="bg-white/90 backdrop-blur-xl shadow-2xl rounded-3xl p-8 max-w-5xl mx-auto border border-gray-100">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {/* LEFT SIDE: Contact Info */}
-              <div>
-                <h3 className="text-3xl font-bold text-gray-800 mb-6">
-                  Get In Touch
-                </h3>
-                <div className="space-y-5">
-                  <div className="flex items-center text-gray-700 p-4 rounded-xl hover:bg-emerald-50 transition-colors duration-300 shadow-sm">
-                    <div className="bg-emerald-100 p-3 rounded-xl mr-4">
-                      <Globe className="text-emerald-600" size={24} />
-                    </div>
-                    <div>
-                      <div className="font-medium">Website</div>
-                      <div className="text-sm text-gray-600">
-                        www.worknestconnect.com
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center text-gray-700 p-4 rounded-xl hover:bg-emerald-50 transition-colors duration-300 shadow-sm">
-                    <div className="bg-emerald-100 p-3 rounded-xl mr-4">
-                      <Mail className="text-emerald-600" size={24} />
-                    </div>
-                    <div>
-                      <div className="font-medium">Email</div>
-                      <div className="text-sm text-gray-600">
-                        info@worknestconnect.com
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center text-gray-700 p-4 rounded-xl hover:bg-emerald-50 transition-colors duration-300 shadow-sm">
-                    <div className="bg-emerald-100 p-3 rounded-xl mr-4">
-                      <Phone className="text-emerald-600" size={24} />
-                    </div>
-                    <div>
-                      <div className="font-medium">Phone</div>
-                      <div className="text-sm text-gray-600">
-                        +91 7431175515
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
-                {/* SOCIAL ICONS */}
-                <div className="mt-8">
-                  <h4 className="font-semibold text-gray-800 mb-4">
-                    Follow Us
-                  </h4>
-                  <div className="flex space-x-4">
-                    <a
-                      href="https://www.instagram.com/worknestconnect"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-emerald-100 text-emerald-600 p-3 rounded-full hover:bg-emerald-200 transition duration-300 shadow-md"
-                    >
-                      <Instagram size={20} />
-                    </a>
-
-                    <a
-                      href="https://www.facebook.com/share/1FYPKKECea/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-emerald-100 text-emerald-600 p-3 rounded-full hover:bg-emerald-200 transition duration-300 shadow-md"
-                    >
-                      <Facebook size={20} />
-                    </a>
-
-                    <a
-                      href="https://www.x.com/Worknestconnect"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-emerald-100 text-emerald-600 p-3 rounded-full hover:bg-emerald-200 transition duration-300 shadow-md"
-                    >
-                      <Twitter size={20} />
-                    </a>
-
-                    <a
-                      href="https://www.youtube.com/@worknestconnect"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-emerald-100 text-emerald-600 p-3 rounded-full hover:bg-emerald-200 transition duration-300 shadow-md"
-                    >
-                      <Youtube size={20} />
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* RIGHT SIDE: Features + Button */}
-              <div>
-                <h3 className="text-3xl font-bold text-gray-800 mb-6">
-                  Why Choose WorknestConnect?
-                </h3>
-                <div className="space-y-5 mb-6">
-                  {[
-                    {
-                      title: "End-to-End Solutions",
-                      desc: "From strategy to execution, we handle everything",
-                    },
-                    {
-                      title: "Expert Team",
-                      desc: "50+ specialists across various domains",
-                    },
-                    {
-                      title: "Proven Results",
-                      desc: "98% client satisfaction rate",
-                    },
-                  ].map((item, idx) => (
-                    <div className="flex items-start" key={idx}>
-                      <div className="bg-emerald-100 p-2 rounded-lg mt-1 mr-4 shadow-sm">
-                        <Check className="text-emerald-600" size={18} />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-800">
-                          {item.title}
-                        </h4>
-                        <p className="text-gray-600 text-sm">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* SCHEDULE CONSULTATION BUTTON */}
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="w-full bg-linear-to-r from-emerald-600 to-emerald-700 text-white py-3 rounded-2xl font-semibold hover:scale-105 transition-transform duration-300 flex items-center justify-center space-x-2 shadow-lg"
-                >
-                  <CalendarCheck size={20} />
-                  <span>Schedule Consultation</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
+<ContactSection/>
       {/* Footer */}
       <Footer />
 
@@ -549,9 +420,23 @@ const DemoPage = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-linear-to-r from-emerald-500 to-emerald-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  disabled={isLoading}
+                  className="w-full bg-linear-to-r from-emerald-500 to-emerald-600 text-white py-4 rounded-xl font-semibold text-lg hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3 relative overflow-hidden"
                 >
-                  Submit Request
+                  {isLoading ? (
+                    <>
+                      <div className="flex items-center gap-3">
+                        <div className="relative">
+                          <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
+                          <div className="absolute top-0 left-0 w-6 h-6 border-3 border-transparent border-t-emerald-200 rounded-full animate-spin" style={{animationDuration: '0.8s'}}></div>
+                        </div>
+                        <span className="animate-pulse">Sending your request...</span>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+                    </>
+                  ) : (
+                    "Submit Request"
+                  )}
                 </button>
               </form>
             </div>
@@ -572,6 +457,17 @@ const DemoPage = () => {
         }
         .animate-fade-in {
           animation: fade-in 0.3s ease-out;
+        }
+        @keyframes shimmer {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+        .animate-shimmer {
+          animation: shimmer 2s infinite;
         }
       `}</style>
     </div>

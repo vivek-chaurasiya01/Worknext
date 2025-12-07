@@ -2,6 +2,8 @@ import Footer from "../Component/Footer";
 import AboutWorknest from "../Component/Our_About";
 import { Navigate, useNavigate } from "react-router-dom";
 import TransformBussnation from "../Component/TransformBussnation";
+import AboutCardDetail from "../Component/Orgchart";
+import OrgChart from "../Component/Orgchart";
 // import OrgChart from "../Component/AboutCardDetail";
 
 const AboutUs = () => {
@@ -111,7 +113,8 @@ const AboutUs = () => {
 
       <TransformBussnation />
       {/* <OrgChart /> */}
-
+      {/* <AboutCardDetail /> */}
+      <OrgChart />
       <Footer />
     </div>
   );

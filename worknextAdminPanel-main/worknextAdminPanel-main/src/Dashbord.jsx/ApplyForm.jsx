@@ -8,6 +8,8 @@ import { FaFilePdf, FaFileExcel, FaSyncAlt } from "react-icons/fa";
 function ApplyData() {
   const [applyData, setApplyData] = useState([]);
   const [originalData, setOriginalData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState(null);
 
   const api_url = import.meta.env.VITE_API_URL;
 
@@ -17,12 +19,15 @@ function ApplyData() {
 
   const fetchApplyData = async () => {
     try {
+      setLoading(true);
       const res = await axios.get(`${api_url}/api/applications`);
       const arr = Array.isArray(res.data.data) ? res.data.data : [];
       setApplyData(arr);
       setOriginalData(arr);
     } catch (error) {
       alert("Unable to fetch! " + error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -50,11 +55,14 @@ function ApplyData() {
   // DELETE
   const deleteRow = async (id) => {
     try {
+      setDeletingId(id);
       await axios.delete(`${api_url}/api/delete/${id}`);
       setApplyData(applyData.filter((item) => item._id !== id));
       setOriginalData(originalData.filter((item) => item._id !== id));
     } catch (error) {
       alert("Unable to delete! " + error);
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -119,6 +127,19 @@ function ApplyData() {
     doc.save("apply_form.pdf");
   };
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-purple-600 mb-4"></div>
+          <p className="text-xl font-semibold text-gray-700">
+            Loading Apply Forms...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="p-4 md:p-6 bg-gray-100 min-h-screen">
       {/* HEADER */}
@@ -171,64 +192,121 @@ function ApplyData() {
 
       {/* TABLE */}
       {applyData.length === 0 ? (
-        <div className="text-center text-gray-500 text-xl py-10">
-          No Applications Found
+        <div className="flex flex-col items-center justify-center py-16 bg-white rounded-2xl shadow-lg">
+          <div className="text-6xl mb-4">📄</div>
+          <p className="text-gray-500 text-xl font-medium">
+            No Applications Found
+          </p>
         </div>
       ) : (
-        <div className="overflow-x-auto shadow-xl rounded-lg bg-white">
-          <table className="min-w-full border border-gray-300">
-            <thead className="bg-gray-900 text-white">
-              <tr>
-                <th className="p-3">Name</th>
-                <th className="p-3">Email</th>
-                <th className="p-3">Mobile</th>
-                <th className="p-3">Qualification</th>
-                <th className="p-3">Message</th>
-                <th className="p-3">CV</th>
-                <th className="p-3">Action</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {applyData.map((item) => (
-                <tr key={item._id} className="border-b hover:bg-gray-100">
-                  <td className="p-3">{item.name}</td>
-                  <td className="p-3">{item.email}</td>
-                  <td className="p-3">{item.mobile}</td>
-                  <td className="p-3">{item.qualification}</td>
-
-                  <td className="p-3">
-                    <div className="w-64 md:w-80 max-h-24 overflow-y-scroll p-2 border bg-gray-50 rounded-md">
-                      {item.message}
-                    </div>
-                  </td>
-
-                  <td className="p-3">
-                    {item.cv ? (
-                      <a
-                        href={`${api_url}/uploads/${item.cv}`}
-                        download
-                        className="px-3 py-2 bg-blue-600 text-white rounded-md"
-                      >
-                        Download
-                      </a>
-                    ) : (
-                      "No CV"
-                    )}
-                  </td>
-
-                  <td className="p-3">
-                    <button
-                      onClick={() => deleteRow(item._id)}
-                      className="px-4 py-2 bg-red-500 text-white rounded-md"
-                    >
-                      Delete
-                    </button>
-                  </td>
+        <div className="overflow-hidden shadow-2xl rounded-2xl bg-white border border-gray-200">
+          <div className="overflow-x-auto">
+            <table className="min-w-full">
+              <thead>
+                <tr className="bg-gradient-to-r from-green-600 to-emerald-700 text-white">
+                  <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">
+                    Name
+                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">
+                    Email
+                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">
+                    Mobile
+                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">
+                    Qualification
+                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">
+                    Message
+                  </th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold uppercase tracking-wider">
+                    CV
+                  </th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold uppercase tracking-wider">
+                    Action
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+
+              <tbody className="divide-y divide-gray-200">
+                {applyData.map((item, index) => (
+                  <tr
+                    key={item._id}
+                    className={`transition-all hover:bg-green-50 ${
+                      index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                    }`}
+                  >
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center">
+                        <div className="h-10 w-10 flex-shrink-0 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold shadow-md">
+                          {item.name.charAt(0).toUpperCase()}
+                        </div>
+                        <div className="ml-4">
+                          <div className="text-sm font-bold text-gray-900">
+                            {item.name}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="text-sm font-bold text-gray-700">
+                        {item.email}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm font-bold text-gray-700">
+                        {item.mobile}
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className="px-3 py-1 inline-flex text-xs leading-5 font-bold rounded-full bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border border-green-200">
+                        {item.qualification}
+                      </span>
+                    </td>
+
+                    <td className="px-6 py-4">
+                      <div className="max-w-xs max-h-20 overflow-y-auto p-3 bg-gradient-to-br from-gray-50 to-green-50 border border-green-200 rounded-lg text-sm font-semibold text-gray-700 shadow-inner">
+                        {item.message}
+                      </div>
+                    </td>
+
+                    <td className="px-6 py-4 text-center">
+                      {item.cv ? (
+                        <a
+                          href={`${api_url}/uploads/${item.cv}`}
+                          download
+                          className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg hover:from-green-600 hover:to-emerald-700 shadow-md hover:shadow-lg transition-all font-bold inline-block"
+                        >
+                          Download
+                        </a>
+                      ) : (
+                        <span className="text-gray-500 font-semibold">
+                          No CV
+                        </span>
+                      )}
+                    </td>
+
+                    <td className="px-6 py-4 text-center">
+                      <button
+                        onClick={() => deleteRow(item._id)}
+                        disabled={deletingId === item._id}
+                        className="px-6 py-2.5 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-lg hover:from-red-600 hover:to-red-700 shadow-md hover:shadow-lg transition-all text-base font-bold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 mx-auto"
+                      >
+                        {deletingId === item._id ? (
+                          <>
+                            <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
+                            <span className="text-base font-bold">...</span>
+                          </>
+                        ) : (
+                          <span className="text-base font-bold">Delete</span>
+                        )}
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

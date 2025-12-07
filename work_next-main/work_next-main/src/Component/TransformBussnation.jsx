@@ -7,6 +7,7 @@ function TransformBussnation() {
   const api_url = import.meta.env.VITE_API_URL;
 
   const [model, setModel] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -23,19 +24,25 @@ function TransformBussnation() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
-    axios.post(`${api_url}/api/demo`, formData);
-    setModel(false);
-
-    setFormData({
-      name: "",
-      message: "",
-      email: "",
-      mobile: "",
-    });
-    toast.success("Data Send");
+    try {
+      await axios.post(`${api_url}/api/demo`, formData);
+      toast.success("Data Send Successfully!");
+      setModel(false);
+      setFormData({
+        name: "",
+        message: "",
+        email: "",
+        mobile: "",
+      });
+    } catch (error) {
+      toast.error("Failed to submit. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -71,6 +78,18 @@ function TransformBussnation() {
       </section>
 
       {/* Modal */}
+      {model && (
+        <>
+          <style>{`
+            @keyframes shimmer {
+              0% { transform: translateX(-100%); }
+              100% { transform: translateX(100%); }
+            }
+            .animate-shimmer {
+              animation: shimmer 2s infinite;
+            }
+          `}</style>
+        </>)}
       {model && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-6 z-50 animate-fade-in">
           <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl w-full max-w-xl p-0 animate-scale-in">
@@ -155,9 +174,23 @@ function TransformBussnation() {
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-4 rounded-2xl font-bold text-lg hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 shadow-[0_10px_25px_rgba(16,185,129,0.4)] hover:shadow-[0_15px_40px_rgba(16,185,129,0.6)]"
+                  disabled={isLoading}
+                  className="w-full bg-gradient-to-r from-emerald-500 to-emerald-600 text-white py-4 rounded-2xl font-bold text-lg hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 shadow-[0_10px_25px_rgba(16,185,129,0.4)] hover:shadow-[0_15px_40px_rgba(16,185,129,0.6)] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3 relative overflow-hidden"
                 >
-                  Submit Request
+                  {isLoading ? (
+                    <>
+                      <div className="flex items-center gap-3">
+                        <div className="relative">
+                          <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
+                          <div className="absolute top-0 left-0 w-6 h-6 border-3 border-transparent border-t-emerald-200 rounded-full animate-spin" style={{animationDuration: '0.8s'}}></div>
+                        </div>
+                        <span className="animate-pulse">Sending Request...</span>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+                    </>
+                  ) : (
+                    "Submit Request"
+                  )}
                 </button>
               </form>
             </div>

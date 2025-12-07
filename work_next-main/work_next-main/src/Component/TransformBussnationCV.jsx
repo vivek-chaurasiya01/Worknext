@@ -7,6 +7,7 @@ function TransformBussnationCV() {
   const api_url = import.meta.env.VITE_API_URL;
 
   const [model, setModel] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -28,6 +29,7 @@ function TransformBussnationCV() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const data = new FormData();
     data.append("name", formData.name);
@@ -55,6 +57,8 @@ function TransformBussnationCV() {
       });
     } catch (error) {
       toast.error("Error: " + error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -135,9 +139,23 @@ function TransformBussnationCV() {
                 {/* SUBMIT BUTTON */}
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-emerald-600 to-teal-400 text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:scale-[1.03] transition-all duration-300"
+                  disabled={isLoading}
+                  className="w-full bg-gradient-to-r from-emerald-600 to-teal-400 text-white py-4 rounded-2xl font-bold text-lg shadow-lg hover:scale-[1.03] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-3 relative overflow-hidden"
                 >
-                  Submit Application
+                  {isLoading ? (
+                    <>
+                      <div className="flex items-center gap-3">
+                        <div className="relative">
+                          <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
+                          <div className="absolute top-0 left-0 w-6 h-6 border-3 border-transparent border-t-emerald-200 rounded-full animate-spin" style={{animationDuration: '0.8s'}}></div>
+                        </div>
+                        <span className="animate-pulse">Submitting Application...</span>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+                    </>
+                  ) : (
+                    "Submit Application"
+                  )}
                 </button>
               </form>
             </div>
@@ -153,6 +171,13 @@ function TransformBussnationCV() {
         }
         .animate-slideUp {
           animation: slideUp 0.4s ease-out;
+        }
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+        .animate-shimmer {
+          animation: shimmer 2s infinite;
         }
       `}</style>
     </div>
