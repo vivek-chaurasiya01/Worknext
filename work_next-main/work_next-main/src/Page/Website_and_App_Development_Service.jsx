@@ -16,6 +16,7 @@ import {
   FaRegCheckCircle,
   FaArrowRight,
 } from "react-icons/fa";
+import { Building2, ShoppingCart, Settings, Palette, RefreshCw, Smartphone, FileText, Globe, Target, User, Zap, Store, Receipt, Users, BarChart3, Link2, CreditCard, Glasses, Layers, Rocket, Building } from "lucide-react";
 import Footer from "../Component/Footer";
 import TransformBussnation from "../Component/TransformBussnation";
 import { Link } from "react-router-dom";
@@ -55,7 +56,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "Corporate Website Design",
       description:
         "Establish a strong digital identity with polished, professional websites that communicate credibility, showcase your brand, and build trust with clients and stakeholders.",
-      icon: "🏢",
+      Icon: Building2,
       gradient: "from-blue-500 to-cyan-500",
     },
     {
@@ -63,7 +64,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "E-commerce Website Development",
       description:
         "Create seamless online shopping experiences with feature-rich e-commerce platforms designed to maximize conversions, streamline product management, and support secure transactions.",
-      icon: "🛒",
+      Icon: ShoppingCart,
       gradient: "from-green-500 to-emerald-500",
     },
     {
@@ -71,7 +72,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "Custom Web Application Development",
       description:
         "Bring complex ideas to life with fully bespoke web applications engineered for performance, automation, and scalability—perfect for specialized business workflows.",
-      icon: "⚙️",
+      Icon: Settings,
       gradient: "from-purple-500 to-pink-500",
     },
     {
@@ -79,7 +80,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "UI/UX Design & Prototyping",
       description:
         "Craft intuitive user interfaces backed by thoughtful experience design—ensuring your digital platforms are visually refined, user-friendly, and conversion-optimized.",
-      icon: "🎨",
+      Icon: Palette,
       gradient: "from-orange-500 to-red-500",
     },
     {
@@ -87,7 +88,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "Website Revamp & Modernization",
       description:
         "Transform outdated websites with fresh designs, updated architecture, and enhanced performance to match modern digital standards.",
-      icon: "🔄",
+      Icon: RefreshCw,
       gradient: "from-teal-500 to-blue-500",
     },
     {
@@ -95,7 +96,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "Responsive Web Design",
       description:
         "Ensure a flawless viewing experience on every device with layouts that adapt intelligently—delivering speed, readability, and visual consistency across screens.",
-      icon: "📱",
+      Icon: Smartphone,
       gradient: "from-indigo-500 to-purple-500",
     },
     {
@@ -103,7 +104,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "CMS-Based Website Development",
       description:
         "Empower your team with easy content control through flexible, scalable CMS platforms tailored to your publishing needs and workflow.",
-      icon: "📝",
+      Icon: FileText,
       gradient: "from-pink-500 to-rose-500",
     },
     {
@@ -111,7 +112,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "Web Portal Development",
       description:
         "Develop secure, multi-functional portals that centralize information and streamline interactions for users, clients, employees, or partners.",
-      icon: "🌐",
+      Icon: Globe,
       gradient: "from-cyan-500 to-blue-500",
     },
     {
@@ -119,7 +120,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "Landing Page Design",
       description:
         "Drive campaigns with high-impact landing pages built for speed, clarity, and conversions—crafted to turn visitors into leads with precision-focused messaging.",
-      icon: "🎯",
+      Icon: Target,
       gradient: "from-yellow-500 to-orange-500",
     },
     {
@@ -127,7 +128,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "Portfolio & Personal Branding Sites",
       description:
         "Showcase work, achievements, and identity through visually compelling, storytelling-driven designs that highlight your unique strengths and personality.",
-      icon: "👤",
+      Icon: User,
       gradient: "from-violet-500 to-purple-500",
     },
   ];
@@ -138,7 +139,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "Native App Development",
       description:
         "Deliver unmatched performance with apps built exclusively for iOS or Android. Crafted using platform-specific technologies to ensure superior speed, fluid interactions, and a seamless user experience.",
-      icon: "📱",
+      Icon: Smartphone,
       gradient: "from-blue-500 to-cyan-500",
     },
     {
@@ -146,7 +147,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "Cross-Platform App Development",
       description:
         "Create a single application that runs beautifully across both platforms. Built with modern frameworks to reduce development time while maintaining exceptional quality and consistent design.",
-      icon: "⚡",
+      Icon: Zap,
       gradient: "from-green-500 to-emerald-500",
     },
     {
@@ -154,7 +155,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "E-commerce & Marketplace Apps",
       description:
         "Create powerful shopping experiences with intuitive browsing, secure payments, real-time inventory, and smooth checkout flows optimized for both customers and sellers.",
-      icon: "🛒",
+      Icon: Store,
       gradient: "from-purple-500 to-pink-500",
     },
     {
@@ -162,7 +163,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "On-Demand Service Apps",
       description:
         "Build dynamic platforms for ride-booking, food delivery, home services, and more. Features include real-time tracking, scheduling, secure payments, and user/provider interfaces.",
-      icon: "🧾",
+      Icon: Receipt,
       gradient: "from-orange-500 to-red-500",
     },
     {
@@ -170,7 +171,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "Social & Community Apps",
       description:
         "Develop engaging platforms with profiles, messaging, feeds, media sharing, and interaction features designed to bring communities together.",
-      icon: "👥",
+      Icon: Users,
       gradient: "from-teal-500 to-blue-500",
     },
     {
@@ -178,7 +179,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "SaaS & Subscription Apps",
       description:
         "Launch subscription-driven applications built with scalable architecture, in-app purchases, tiered plans, dashboards, and cloud integrations for long-term business growth.",
-      icon: "📊",
+      Icon: BarChart3,
       gradient: "from-indigo-500 to-purple-500",
     },
     {
@@ -186,7 +187,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "IoT-Enabled Apps",
       description:
         "Connect applications with smart devices, sensors, and automation ecosystems. Ideal for home automation, smart appliances, healthcare devices, and industrial setups.",
-      icon: "🔗",
+      Icon: Link2,
       gradient: "from-pink-500 to-rose-500",
     },
     {
@@ -194,7 +195,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "Fintech & Payment Apps",
       description:
         "Develop secure mobile financial solutions with digital wallets, payment gateways, transaction tracking, investment tools, and compliance-ready systems.",
-      icon: "💳",
+      Icon: CreditCard,
       gradient: "from-cyan-500 to-blue-500",
     },
     {
@@ -202,7 +203,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "AR/VR Mobile Apps",
       description:
         "Create immersive augmented and virtual reality experiences for gaming, education, retail, and interactive product demonstrations.",
-      icon: "🕶️",
+      Icon: Glasses,
       gradient: "from-yellow-500 to-orange-500",
     },
     {
@@ -210,7 +211,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "Hybrid App Development",
       description:
         "Combine the flexibility of web technologies with native capabilities. An efficient and scalable solution that accelerates deployment without compromising usability or performance.",
-      icon: "🌐",
+      Icon: Layers,
       gradient: "from-violet-500 to-purple-500",
     },
     {
@@ -218,7 +219,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "Progressive Web App (PWA) Development",
       description:
         "Build fast, app-like web experiences that work across all devices. PWAs offer instant loading, offline capabilities, and effortless accessibility—no download required.",
-      icon: "🚀",
+      Icon: Rocket,
       gradient: "from-emerald-500 to-teal-500",
     },
     {
@@ -226,7 +227,7 @@ const WebsiteAndAppDevelopment = () => {
       title: "Enterprise App Development",
       description:
         "Design secure and scalable applications tailored for internal operations, teams, and workflows. Engineered to handle large data volumes and deliver high reliability for business-critical environments.",
-      icon: "🏢",
+      Icon: Building,
       gradient: "from-slate-500 to-gray-600",
     },
   ];
@@ -343,14 +344,14 @@ const WebsiteAndAppDevelopment = () => {
             {websiteServices.map((service, index) => (
               <div
                 key={service.id}
-                className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 border border-gray-100 animate-fade-in-up"
+                className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-500 hover:-translate-y-3 border-2 border-transparent hover:border-blue-400 animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="p-8">
                   <div
-                    className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-2xl text-white text-2xl mb-6 group-hover:scale-110 transition-transform duration-300`}
+                    className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-2xl mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg`}
                   >
-                    {service.icon}
+                    <service.Icon className="text-white" size={32} />
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-green-600 transition-colors duration-300">
                     {service.title}
@@ -400,14 +401,14 @@ const WebsiteAndAppDevelopment = () => {
             {appServices.map((service, index) => (
               <div
                 key={service.id}
-                className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 border border-gray-100 animate-fade-in-up"
+                className="group bg-white rounded-3xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-500 hover:-translate-y-3 border-2 border-transparent hover:border-purple-400 animate-fade-in-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="p-8">
                   <div
-                    className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-2xl text-white text-2xl mb-6 group-hover:scale-110 transition-transform duration-300`}
+                    className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-2xl mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg`}
                   >
-                    {service.icon}
+                    <service.Icon className="text-white" size={32} />
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-purple-600 transition-colors duration-300">
                     {service.title}

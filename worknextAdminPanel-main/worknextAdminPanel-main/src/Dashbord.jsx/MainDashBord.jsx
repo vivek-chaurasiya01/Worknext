@@ -10,7 +10,6 @@ function MainDashBord() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-
     if (!token) {
       navigate("/");
     }
@@ -29,7 +28,6 @@ function MainDashBord() {
 
     handleResize();
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -41,14 +39,12 @@ function MainDashBord() {
           open ? "w-64" : "w-20"
         }`}
       >
-        {/* ADMIN LOGIN TITLE */}
         {open && (
           <div className="text-xl font-bold mb-6 border-b border-gray-700 pb-2 text-center">
             Admin Panel
           </div>
         )}
 
-        {/* MENU LINKS */}
         <div className="flex-1 flex flex-col gap-4 mt-4">
           <NavLink
             to="/Dashboard"
@@ -75,6 +71,14 @@ function MainDashBord() {
           </NavLink>
 
           <NavLink
+            to="ApplyForm"
+            className="flex items-center gap-4 text-[18px] px-3 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all"
+          >
+            <FaVideo size={open ? 22 : 30} />
+            {open && <span>Apply Form</span>}
+          </NavLink>
+
+          <NavLink
             to="ChangePasswordForm"
             className="flex items-center gap-4 text-[18px] px-3 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all"
           >
@@ -83,7 +87,6 @@ function MainDashBord() {
           </NavLink>
         </div>
 
-        {/* LOGOUT BUTTON */}
         <div className="mt-auto pt-4 border-t border-gray-700">
           <NavLink
             to="/"
@@ -98,7 +101,7 @@ function MainDashBord() {
         </div>
       </div>
 
-      {/* RIGHT SIDE CONTENT */}
+      {/* RIGHT SIDE */}
       <div
         className={`fixed top-0 right-0 bottom-0 transition-all duration-300 overflow-auto ${
           open ? "left-64" : "left-20"
@@ -110,7 +113,6 @@ function MainDashBord() {
             open ? "left-64" : "left-20"
           }`}
         >
-          {/* HAMBURGER BUTTON */}
           <div className="flex items-center gap-4">
             <button
               onClick={() => setOpen(!open)}
@@ -119,17 +121,16 @@ function MainDashBord() {
               <GiHamburgerMenu size={30} />
             </button>
 
-            <h1 className="text-xl lg:text-2xl font-bold text-gray-700">
+            {/* 👇 800px ke niche text hide */}
+            <h1 className="hidden min-[800px]:block text-xl lg:text-2xl font-bold text-gray-700">
               Welcome to Dashboard
             </h1>
           </div>
 
-          {/* PROFILE */}
           <div className="flex items-center gap-3 sm:gap-4">
             <span className="text-lg font-semibold text-gray-700">
               Worknext
             </span>
-
             <img
               src="/Manager.png"
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border"
@@ -138,7 +139,6 @@ function MainDashBord() {
           </div>
         </div>
 
-        {/* PAGE OUTLET */}
         <div className="mt-20 p-2 sm:p-2 lg:p-4 xl:p-6">
           <Outlet />
         </div>

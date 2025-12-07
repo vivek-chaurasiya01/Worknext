@@ -28,7 +28,7 @@ export default function SidebarText() {
             icon: <FaFacebookF />,
             link: "https://www.facebook.com/share/1FYPKKECea/",
           },
-          { icon: <FaWhatsapp />, link: "https://wa.me/9197431175515" },
+          { icon: <FaWhatsapp />, link: "https://wa.me/97431175515" },
           { icon: <FaTwitter />, link: "https://www.x.com/Worknestconnect" },
           {
             icon: <FaTiktok />,

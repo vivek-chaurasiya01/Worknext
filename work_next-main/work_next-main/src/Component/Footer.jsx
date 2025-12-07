@@ -188,16 +188,9 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="border-t border-green-900/40 pt-6 text-center text-gray-400 text-sm">
+        <div className="border-t border-green-900/40 pt-6 text-center text-gray-400 text-sm font-semibold">
           {new Date().getFullYear()} © Copyright To WorkNest Connect. Designed
-          and Developed by{" "}
-          <a
-            href="https://www.digicoders.in"
-            target="_blank"
-            className="text-green-300"
-          >
-            #TeamDigiCoders
-          </a>
+          and Developed by #TeamWorknestConnect
         </div>
       </div>
     </footer>

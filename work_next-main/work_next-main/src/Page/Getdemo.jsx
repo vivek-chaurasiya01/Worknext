@@ -1,26 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaCheck } from "react-icons/fa";
 import { toast } from "react-toastify";
-
-import {
-  FaRocket,
-  FaBullhorn,
-  FaPalette,
-  FaLaptopCode,
-  FaRobot,
-  FaChartLine,
-  FaGlobe,
-  FaEnvelope,
-  FaPhone,
-  FaInstagram,
-  FaFacebookF,
-  FaTwitter,
-  FaYoutube,
-  FaCalendarCheck,
-  FaChartBar,
-  FaTimes,
-} from "react-icons/fa";
+import { Check, Megaphone, Palette, Laptop, Bot, TrendingUp, Globe, Mail, Phone, Instagram, Facebook, Twitter, Youtube, CalendarCheck, BarChart3, X } from "lucide-react";
 import Footer from "../Component/Footer";
 import axios from "axios";
 const DemoPage = () => {
@@ -65,7 +46,7 @@ const DemoPage = () => {
   ];
   const services = [
     {
-      icon: <FaBullhorn className="text-3xl text-emerald-600" />,
+      Icon: Megaphone,
       title: "Digital Marketing",
       description:
         "Boost your online presence with our comprehensive digital marketing solutions.",
@@ -75,9 +56,10 @@ const DemoPage = () => {
         "Content Marketing Strategy",
         "Google & Meta Ads",
       ],
+      gradient: "from-blue-500 to-blue-600",
     },
     {
-      icon: <FaPalette className="text-3xl text-emerald-600" />,
+      Icon: Palette,
       title: "Graphic Design",
       description: "Professional design services to make your brand stand out.",
       features: [
@@ -86,9 +68,10 @@ const DemoPage = () => {
         "Marketing Materials",
         "Social Media Graphics",
       ],
+      gradient: "from-pink-500 to-pink-600",
     },
     {
-      icon: <FaLaptopCode className="text-3xl text-emerald-600" />,
+      Icon: Laptop,
       title: "Web & App Development",
       description:
         "Custom websites and applications tailored to your business needs.",
@@ -98,9 +81,10 @@ const DemoPage = () => {
         "E-commerce Solutions",
         "Responsive Design",
       ],
+      gradient: "from-purple-500 to-purple-600",
     },
     {
-      icon: <FaRobot className="text-3xl text-emerald-600" />,
+      Icon: Bot,
       title: "IT & AI Solutions",
       description: "Cutting-edge technology solutions for modern businesses.",
       features: [
@@ -109,9 +93,10 @@ const DemoPage = () => {
         "SaaS Development",
         "Task Management Systems",
       ],
+      gradient: "from-green-500 to-green-600",
     },
     {
-      icon: <FaChartLine className="text-3xl text-emerald-600" />,
+      Icon: TrendingUp,
       title: "Business Consulting",
       description: "Strategic guidance to grow and optimize your business.",
       features: [
@@ -120,6 +105,7 @@ const DemoPage = () => {
         "HR Policy Development",
         "IT Setup Advisory",
       ],
+      gradient: "from-orange-500 to-orange-600",
     },
   ];
 
@@ -152,7 +138,7 @@ const DemoPage = () => {
                 <span className="text-emerald-400">Business</span> With Our
                 Digital Solutions
               </h1>
-              <p className="text-lg text-emerald-200 mb-8 leading-relaxed">
+              <p className="text-xl lg:text-xl text-white mb-8 leading-relaxed">
                 From digital marketing to AI solutions, we provide everything
                 your business needs to succeed in the digital age. Get a
                 personalized demo to see how we can help.
@@ -163,7 +149,7 @@ const DemoPage = () => {
                   onClick={() => setIsModalOpen(true)}
                   className="bg-linear-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-emerald-600 hover:to-emerald-700 transition-all duration-300 flex items-center justify-center space-x-3 shadow-lg hover:shadow-xl hover:shadow-emerald-200"
                 >
-                  <FaCalendarCheck className="text-xl" />
+                  <CalendarCheck className="text-xl" />
                   <span>Request Free Demo</span>
                 </button>
                 <a
@@ -200,7 +186,7 @@ const DemoPage = () => {
                 transition={{ duration: 0.3 }}
               >
                 <div className="text-center mb-6">
-                  <FaChartBar className="text-5xl mx-auto mb-4 text-emerald-200" />
+                  <BarChart3 className="text-5xl mx-auto mb-4 text-emerald-200" size={48} />
                   <h3 className="text-2xl font-bold mb-2">
                     See Our Solutions in Action
                   </h3>
@@ -215,7 +201,7 @@ const DemoPage = () => {
                     "No commitment required",
                   ].map((item, i) => (
                     <div key={i} className="flex items-center space-x-3">
-                      <FaCheck className="text-emerald-200" />
+                      <Check className="text-emerald-200" size={20} />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -232,7 +218,7 @@ const DemoPage = () => {
                   ease: "easeInOut",
                 }}
               >
-                <FaBullhorn className="text-2xl text-emerald-600" />
+                <Megaphone className="text-2xl text-emerald-600" size={32} />
               </motion.div>
               <motion.div
                 className="absolute -bottom-6 -right-6 w-16 h-16 bg-white rounded-xl shadow-lg flex items-center justify-center"
@@ -243,7 +229,7 @@ const DemoPage = () => {
                   ease: "easeInOut",
                 }}
               >
-                <FaLaptopCode className="text-xl text-emerald-600" />
+                <Laptop className="text-xl text-emerald-600" size={28} />
               </motion.div>
             </div>
           </div>
@@ -285,11 +271,11 @@ const DemoPage = () => {
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.05 }}
-                className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 group relative overflow-hidden"
+                className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 group relative overflow-hidden border-2 border-transparent hover:border-emerald-400"
               >
-                <div className="mb-5">
-                  <div className="bg-emerald-100 w-16 h-16 rounded-xl flex items-center justify-center group-hover:bg-emerald-200 transition-colors duration-300">
-                    {service.icon}
+                <div className="mb-6">
+                  <div className={`bg-gradient-to-br ${service.gradient} w-15 h-15 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg`}>
+                    <service.Icon className="text-white" size={36} />
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-3">
@@ -299,8 +285,8 @@ const DemoPage = () => {
                 <ul className="space-y-3">
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="flex items-center text-gray-700">
-                      <div className="bg-emerald-100 p-1 rounded-full mr-3">
-                        <FaCheck className="text-emerald-600 text-xs" />
+                      <div className="bg-emerald-100 p-1.5 rounded-full mr-3">
+                        <Check className="text-emerald-600" size={14} />
                       </div>
                       {feature}
                     </li>
@@ -341,7 +327,7 @@ const DemoPage = () => {
             onClick={() => setIsModalOpen(true)}
             className="bg-white text-emerald-600 px-10 py-4 rounded-xl font-semibold text-lg hover:bg-emerald-50 transition-all duration-300 flex items-center space-x-3 shadow-lg mx-auto"
           >
-            <FaCalendarCheck className="text-xl" />
+            <CalendarCheck className="text-xl" />
             <span>Get Your Free Demo Now</span>
           </button>
         </div>
@@ -360,7 +346,7 @@ const DemoPage = () => {
                 <div className="space-y-5">
                   <div className="flex items-center text-gray-700 p-4 rounded-xl hover:bg-emerald-50 transition-colors duration-300 shadow-sm">
                     <div className="bg-emerald-100 p-3 rounded-xl mr-4">
-                      <FaGlobe className="text-emerald-600 text-xl" />
+                      <Globe className="text-emerald-600" size={24} />
                     </div>
                     <div>
                       <div className="font-medium">Website</div>
@@ -371,7 +357,7 @@ const DemoPage = () => {
                   </div>
                   <div className="flex items-center text-gray-700 p-4 rounded-xl hover:bg-emerald-50 transition-colors duration-300 shadow-sm">
                     <div className="bg-emerald-100 p-3 rounded-xl mr-4">
-                      <FaEnvelope className="text-emerald-600 text-xl" />
+                      <Mail className="text-emerald-600" size={24} />
                     </div>
                     <div>
                       <div className="font-medium">Email</div>
@@ -382,12 +368,12 @@ const DemoPage = () => {
                   </div>
                   <div className="flex items-center text-gray-700 p-4 rounded-xl hover:bg-emerald-50 transition-colors duration-300 shadow-sm">
                     <div className="bg-emerald-100 p-3 rounded-xl mr-4">
-                      <FaPhone className="text-emerald-600 text-xl" />
+                      <Phone className="text-emerald-600" size={24} />
                     </div>
                     <div>
                       <div className="font-medium">Phone</div>
                       <div className="text-sm text-gray-600">
-                        +974 3117 5515
+                        +91 7431175515
                       </div>
                     </div>
                   </div>
@@ -405,7 +391,7 @@ const DemoPage = () => {
                       rel="noopener noreferrer"
                       className="bg-emerald-100 text-emerald-600 p-3 rounded-full hover:bg-emerald-200 transition duration-300 shadow-md"
                     >
-                      <FaInstagram />
+                      <Instagram size={20} />
                     </a>
 
                     <a
@@ -414,7 +400,7 @@ const DemoPage = () => {
                       rel="noopener noreferrer"
                       className="bg-emerald-100 text-emerald-600 p-3 rounded-full hover:bg-emerald-200 transition duration-300 shadow-md"
                     >
-                      <FaFacebookF />
+                      <Facebook size={20} />
                     </a>
 
                     <a
@@ -423,7 +409,7 @@ const DemoPage = () => {
                       rel="noopener noreferrer"
                       className="bg-emerald-100 text-emerald-600 p-3 rounded-full hover:bg-emerald-200 transition duration-300 shadow-md"
                     >
-                      <FaTwitter />
+                      <Twitter size={20} />
                     </a>
 
                     <a
@@ -432,7 +418,7 @@ const DemoPage = () => {
                       rel="noopener noreferrer"
                       className="bg-emerald-100 text-emerald-600 p-3 rounded-full hover:bg-emerald-200 transition duration-300 shadow-md"
                     >
-                      <FaYoutube />
+                      <Youtube size={20} />
                     </a>
                   </div>
                 </div>
@@ -460,7 +446,7 @@ const DemoPage = () => {
                   ].map((item, idx) => (
                     <div className="flex items-start" key={idx}>
                       <div className="bg-emerald-100 p-2 rounded-lg mt-1 mr-4 shadow-sm">
-                        <FaCheck className="text-emerald-600 text-sm" />
+                        <Check className="text-emerald-600" size={18} />
                       </div>
                       <div>
                         <h4 className="font-semibold text-gray-800">
@@ -477,7 +463,7 @@ const DemoPage = () => {
                   onClick={() => setIsModalOpen(true)}
                   className="w-full bg-linear-to-r from-emerald-600 to-emerald-700 text-white py-3 rounded-2xl font-semibold hover:scale-105 transition-transform duration-300 flex items-center justify-center space-x-2 shadow-lg"
                 >
-                  <FaCalendarCheck />
+                  <CalendarCheck size={20} />
                   <span>Schedule Consultation</span>
                 </button>
               </div>
@@ -499,7 +485,7 @@ const DemoPage = () => {
                 onClick={() => setIsModalOpen(false)}
                 className="text-white hover:text-emerald-200 transition duration-300 p-1 rounded-full hover:bg-white/10"
               >
-                <FaTimes className="text-xl" />
+                <X className="text-xl" />
               </button>
             </div>
             <div className="p-6">

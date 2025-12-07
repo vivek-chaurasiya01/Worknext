@@ -1,43 +1,36 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  FaRocket,
-  FaEye,
-  FaCode,
-  FaMobile,
-  FaPalette,
-  FaChartLine,
-  FaGlobe,
-  FaArrowRight,
-  FaPlay,
-  FaStar,
-  FaAward,
-  FaUsers,
-  FaCalendarAlt,
-  FaExternalLinkAlt,
-  FaHandshake,
-  FaLightbulb,
-  FaTrophy,
-  FaCogs,
-  FaShieldAlt,
-  FaRobot,
-  FaDatabase,
-  FaCloud,
-  FaShoppingCart,
-  FaSearch,
-  FaFilter,
-  FaChartBar,
-  FaCheckCircle,
-  FaClock,
-  FaHeart,
-  FaThumbsUp,
-  FaLeaf,
-  FaTree,
-  FaSeedling,
-  FaRecycle,
-} from "react-icons/fa";
+  Rocket,
+  Eye,
+  Code,
+  Smartphone,
+  Palette,
+  TrendingUp,
+  Globe,
+  ArrowRight,
+  Play,
+  Star,
+  Award,
+  Users,
+  Calendar,
+  Handshake,
+  Lightbulb,
+  Trophy,
+  Settings,
+  Shield,
+  Bot,
+  Database,
+  Cloud,
+  ShoppingCart,
+  Search,
+  BarChart3,
+  CheckCircle,
+  ThumbsUp,
+} from "lucide-react";
 import Footer from "../Component/Footer";
 import TransformBussnation from "../Component/TransformBussnation";
+import TransformBussnationCV from "../Component/TransformBussnationCV";
 
 const Project = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -45,13 +38,13 @@ const Project = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const categories = [
-    { id: "all", name: "All Projects", icon: FaGlobe, count: 200 },
-    { id: "web", name: "Web Apps", icon: FaCode, count: 68 },
-    { id: "mobile", name: "Mobile Apps", icon: FaMobile, count: 42 },
-    { id: "ecommerce", name: "E-Commerce", icon: FaShoppingCart, count: 35 },
-    { id: "design", name: "UI/UX Design", icon: FaPalette, count: 28 },
-    { id: "marketing", name: "Marketing", icon: FaChartLine, count: 24 },
-    { id: "ai", name: "AI/ML", icon: FaRobot, count: 19 },
+    { id: "all", name: "All Projects", icon: Globe, count: 200 },
+    { id: "web", name: "Web Apps", icon: Code, count: 68 },
+    { id: "mobile", name: "Mobile Apps", icon: Smartphone, count: 42 },
+    { id: "ecommerce", name: "E-Commerce", icon: ShoppingCart, count: 35 },
+    { id: "design", name: "UI/UX Design", icon: Palette, count: 28 },
+    { id: "marketing", name: "Marketing", icon: TrendingUp, count: 24 },
+    { id: "ai", name: "AI/ML", icon: Bot, count: 19 },
   ];
 
   const projects = [
@@ -247,65 +240,65 @@ const Project = () => {
     {
       number: "200+",
       label: "Projects Completed",
-      icon: FaAward,
+      icon: Award,
       suffix: "",
       color: "from-green-500 to-emerald-500",
     },
     {
       number: "99%",
       label: "Client Satisfaction",
-      icon: FaStar,
+      icon: Star,
       suffix: "",
       color: "from-green-500 to-lime-500",
     },
     {
       number: "100+",
       label: "Happy Clients",
-      icon: FaUsers,
+      icon: Users,
       suffix: "",
       color: "from-emerald-500 to-teal-500",
     },
     {
       number: "5+",
       label: "Years Experience",
-      icon: FaCalendarAlt,
+      icon: Calendar,
       suffix: "",
       color: "from-lime-500 to-green-500",
     },
   ];
 
   const technologies = [
-    { name: "React", icon: FaCode, projects: 45, level: 95 },
-    { name: "Node.js", icon: FaDatabase, projects: 38, level: 90 },
-    { name: "Python", icon: FaRobot, projects: 32, level: 85 },
-    { name: "React Native", icon: FaMobile, projects: 28, level: 88 },
-    { name: "AWS", icon: FaCloud, projects: 42, level: 92 },
-    { name: "MongoDB", icon: FaDatabase, projects: 35, level: 87 },
-    { name: "Firebase", icon: FaShieldAlt, projects: 30, level: 85 },
-    { name: "Docker", icon: FaCogs, projects: 25, level: 82 },
+    { name: "React", icon: Code, projects: 45, level: 95 },
+    { name: "Node.js", icon: Database, projects: 38, level: 90 },
+    { name: "Python", icon: Bot, projects: 32, level: 85 },
+    { name: "React Native", icon: Smartphone, projects: 28, level: 88 },
+    { name: "AWS", icon: Cloud, projects: 42, level: 92 },
+    { name: "MongoDB", icon: Database, projects: 35, level: 87 },
+    { name: "Firebase", icon: Shield, projects: 30, level: 85 },
+    { name: "Docker", icon: Settings, projects: 25, level: 82 },
   ];
 
   const achievements = [
     {
-      icon: FaTrophy,
+      icon: Trophy,
       title: "Best Web Development Agency 2024",
       description: "Awarded by Tech Excellence Awards",
       year: "2024",
     },
     {
-      icon: FaChartBar,
+      icon: BarChart3,
       title: "99% Project Success Rate",
       description: "Consistently delivering projects on time and within budget",
       year: "Ongoing",
     },
     {
-      icon: FaLightbulb,
+      icon: Lightbulb,
       title: "Innovation Leader",
       description: "Recognized for cutting-edge technology solutions",
       year: "2023",
     },
     {
-      icon: FaHandshake,
+      icon: Handshake,
       title: "Client Partnership Excellence",
       description: "Long-term relationships with 95% client retention",
       year: "2024",
@@ -344,7 +337,7 @@ const Project = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-full text-sm font-bold mb-8 shadow-lg">
-              <FaRocket className="w-4 h-4 mr-2 animate-pulse" />
+              <Rocket className="w-4 h-4 mr-2 animate-pulse" />
               Explore 200+ Successful Projects
             </div>
 
@@ -356,7 +349,7 @@ const Project = () => {
               <span className="text-white">Portfolio Gallery</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-green-100 mb-10 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-2xl text-green-100 mb-10 max-w-4xl mx-auto leading-relaxed">
               Discover innovative solutions that transformed businesses. Each
               project tells a story of collaboration, technical excellence, and
               measurable results.
@@ -368,13 +361,13 @@ const Project = () => {
                 className="group bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-300 flex items-center justify-center shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
               >
                 <span>View Projects</span>
-                <FaArrowRight className="ml-3 group-hover:translate-x-2 transition-transform" />
+                <ArrowRight className="ml-3 group-hover:translate-x-2 transition-transform" />
               </a>
               <Link
                 to="/contact"
                 className="border-2 border-green-400 text-green-400 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-green-400 hover:text-white transition-all duration-300 flex items-center justify-center backdrop-blur-sm"
               >
-                <FaPlay className="mr-3" />
+                <Play className="mr-3" />
                 Start Your Project
               </Link>
             </div>
@@ -505,7 +498,7 @@ const Project = () => {
                   {project.featured && (
                     <div className="absolute top-4 left-4">
                       <span className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full flex items-center">
-                        <FaStar className="mr-1" /> Featured
+                        <Star className="mr-1" size={14} /> Featured
                       </span>
                     </div>
                   )}
@@ -562,10 +555,11 @@ const Project = () => {
                   <div className="flex items-center justify-between text-sm text-green-600 mb-4">
                     <div className="flex items-center space-x-4">
                       <span className="flex items-center">
-                        <FaThumbsUp className="mr-1.5" /> {project.likes}
+                        <ThumbsUp className="mr-1.5" size={16} />{" "}
+                        {project.likes}
                       </span>
                       <span className="flex items-center">
-                        <FaEye className="mr-1.5" /> {project.views}
+                        <Eye className="mr-1.5" size={16} /> {project.views}
                       </span>
                     </div>
                     <span className="font-medium">{project.duration}</span>
@@ -584,7 +578,7 @@ const Project = () => {
                         href={project.link}
                         className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 font-medium rounded-lg hover:from-green-100 hover:to-emerald-100 transition-all"
                       >
-                        <FaEye className="mr-2" />
+                        <Eye className="mr-2" size={18} />
                         View Details
                       </a>
                     </div>
@@ -602,7 +596,7 @@ const Project = () => {
                 className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
                 Load More Projects
-                <FaArrowRight className="ml-2" />
+                <ArrowRight className="ml-2" />
               </button>
             </div>
           )}
@@ -644,7 +638,7 @@ const Project = () => {
                   <span className="text-xs font-medium text-green-700 bg-green-100 px-3 py-1 rounded-full">
                     {achievement.year}
                   </span>
-                  <FaCheckCircle className="text-green-500" />
+                  <CheckCircle className="text-green-500" size={20} />
                 </div>
               </div>
             ))}
@@ -652,36 +646,7 @@ const Project = () => {
         </div>
       </section>
       {/* CTA Section - Green Theme */}
-      <section className="py-16 bg-gradient-to-br from-green-900 via-emerald-900 to-green-800">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready to Start Your Project?
-            </h2>
-            <p className="text-xl text-green-100 mb-10 max-w-2xl mx-auto">
-              Let's collaborate to create something amazing. Share your vision
-              with us.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-green-700 font-bold rounded-xl hover:bg-green-50 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-1"
-              >
-                <FaPlay className="mr-3" />
-                Start Free Consultation
-              </Link>
-              <a
-                href="#projects"
-                className="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-xl hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
-              >
-                View More Projects
-                <FaArrowRight className="ml-3" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <TransformBussnation />
       {/* Process Section - Green Timeline */}
       <section className="py-16 bg-gradient-to-b from-green-50 to-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -702,7 +667,7 @@ const Project = () => {
               {
                 step: "01",
                 title: "Discovery & Planning",
-                icon: FaSearch,
+                icon: Search,
                 description:
                   "Understanding requirements and planning the roadmap",
                 color: "from-green-500 to-emerald-500",
@@ -710,21 +675,21 @@ const Project = () => {
               {
                 step: "02",
                 title: "Design & Prototype",
-                icon: FaPalette,
+                icon: Palette,
                 description: "Creating wireframes and interactive prototypes",
                 color: "from-emerald-500 to-teal-500",
               },
               {
                 step: "03",
                 title: "Development",
-                icon: FaCode,
+                icon: Code,
                 description: "Building with clean code and best practices",
                 color: "from-teal-500 to-cyan-500",
               },
               {
                 step: "04",
                 title: "Launch & Support",
-                icon: FaRocket,
+                icon: Rocket,
                 description: "Deployment and ongoing maintenance",
                 color: "from-green-600 to-emerald-600",
               },

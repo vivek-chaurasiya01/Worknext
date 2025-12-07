@@ -5,6 +5,7 @@ import Contact from "./Dashbord.jsx/Contact";
 import Demo from "./Dashbord.jsx/Demo";
 import AdminLogin from "./Page.jsx/AdminLogin";
 import ChangePasswordForm from "./Dashbord.jsx/ChnagePassword";
+import ApplyData from "./Dashbord.jsx/ApplyForm";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="Contact" element={<Contact />} />
           <Route path="Demo" element={<Demo />} />
+          <Route path="ApplyForm" element={<ApplyData />} />
           <Route path="ChangePasswordForm" element={<ChangePasswordForm />} />
         </Route>
       </Routes>

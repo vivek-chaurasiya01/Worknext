@@ -2,6 +2,7 @@ import Footer from "../Component/Footer";
 import AboutWorknest from "../Component/Our_About";
 import { Navigate, useNavigate } from "react-router-dom";
 import TransformBussnation from "../Component/TransformBussnation";
+// import OrgChart from "../Component/AboutCardDetail";
 
 const AboutUs = () => {
   const Navigate = useNavigate();
@@ -108,24 +109,9 @@ const AboutUs = () => {
       {/* Our Component */}
       <AboutWorknest />
 
-      {/* strautre card */}
-      <div className="w-full flex justify-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-32 bg-transparent mb-20">
-        <img
-          src="/WNC Organisation structure.png"
-          alt="Structure"
-          className="
-      w-full
-      max-w-[1400px]
-      h-auto
-      object-contain
-      drop-shadow-lg
-      opacity-0
-      animate-fadeZoom
-    "
-        />
-      </div>
-
       <TransformBussnation />
+      {/* <OrgChart /> */}
+
       <Footer />
     </div>
   );

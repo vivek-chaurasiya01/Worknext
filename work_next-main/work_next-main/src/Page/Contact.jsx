@@ -509,9 +509,6 @@ export default function ContactHeader() {
               </a>
             </div>
 
-            <p className="mt-14 text-gray-500 text-sm">
-              © 2025 WorknestConnect. All rights reserved.
-            </p>
           </div>
         </div>
       </section>

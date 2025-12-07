@@ -10,6 +10,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
 
   const navigate = useNavigate();
 
@@ -59,126 +60,86 @@ export default function Navbar() {
     };
   }, [showSearch]);
 
+  // Search mappings with categories
+  const searchMappings = {
+    "digital marketing": { path: "/services/Digital_Marketing", category: "Service", title: "Digital Marketing" },
+    marketing: { path: "/services/Digital_Marketing", category: "Service", title: "Digital Marketing" },
+    seo: { path: "/services/Digital_Marketing", category: "Service", title: "SEO - Digital Marketing" },
+    "social media": { path: "/services/Digital_Marketing", category: "Service", title: "Social Media Marketing" },
+    "google ads": { path: "/services/Digital_Marketing", category: "Service", title: "Google Ads" },
+    "meta ads": { path: "/services/Digital_Marketing", category: "Service", title: "Meta Ads" },
+    "facebook ads": { path: "/services/Digital_Marketing", category: "Service", title: "Facebook Ads" },
+    ppc: { path: "/services/Digital_Marketing", category: "Service", title: "PPC Marketing" },
+    "content marketing": { path: "/services/Digital_Marketing", category: "Service", title: "Content Marketing" },
+    "graphic design": { path: "/services/Graphic_designing_services", category: "Service", title: "Graphic Design" },
+    design: { path: "/services/Graphic_designing_services", category: "Service", title: "Design Services" },
+    logo: { path: "/services/Graphic_designing_services", category: "Service", title: "Logo Design" },
+    branding: { path: "/services/Graphic_designing_services", category: "Service", title: "Branding" },
+    banner: { path: "/services/Graphic_designing_services", category: "Service", title: "Banner Design" },
+    "web development": { path: "/services/Website_and_App_Development", category: "Service", title: "Web Development" },
+    "app development": { path: "/services/Website_and_App_Development", category: "Service", title: "App Development" },
+    website: { path: "/services/Website_and_App_Development", category: "Service", title: "Website" },
+    react: { path: "/services/Website_and_App_Development", category: "Service", title: "React Development" },
+    "android app": { path: "/services/Website_and_App_Development", category: "Service", title: "Android App" },
+    "it solutions": { path: "/services/IT_&_AI_Solutions", category: "Service", title: "IT Solutions" },
+    "ai solutions": { path: "/services/IT_&_AI_Solutions", category: "Service", title: "AI Solutions" },
+    "artificial intelligence": { path: "/services/IT_&_AI_Solutions", category: "Service", title: "Artificial Intelligence" },
+    automation: { path: "/services/IT_&_AI_Solutions", category: "Service", title: "Business Automation" },
+    crm: { path: "/services/IT_&_AI_Solutions", category: "Service", title: "CRM Solutions" },
+    "business consulting": { path: "/services/Business_Consultings", category: "Service", title: "Business Consulting" },
+    consulting: { path: "/services/Business_Consultings", category: "Service", title: "Consulting Services" },
+    "business setup": { path: "/services/Business_Consultings", category: "Service", title: "Business Setup" },
+    about: { path: "/about", category: "Page", title: "About Us" },
+    careers: { path: "/Careers", category: "Page", title: "Careers" },
+    demo: { path: "/GetDemo", category: "Page", title: "Get Demo" },
+    home: { path: "/", category: "Page", title: "Home" },
+    contact: { path: "/contact", category: "Page", title: "Contact Us" },
+    project: { path: "/Project", category: "Page", title: "Projects" },
+  };
+
+  // Handle search input with live suggestions
+  const handleSearchInput = (value) => {
+    setSearchQuery(value);
+    if (!value.trim()) {
+      setSearchSuggestions([]);
+      return;
+    }
+    const query = value.toLowerCase().trim();
+    const matches = [];
+    Object.keys(searchMappings).forEach((key) => {
+      if (key.includes(query) || query.includes(key)) {
+        const item = searchMappings[key];
+        if (!matches.find(m => m.path === item.path && m.title === item.title)) {
+          matches.push(item);
+        }
+      }
+    });
+    setSearchSuggestions(matches.slice(0, 5));
+  };
+
   // Enhanced Search functionality
-  const handleSearch = (e) => {
-    e.preventDefault();
+  const handleSearch = (e, selectedPath = null) => {
+    if (e) e.preventDefault();
+    if (selectedPath) {
+      navigate(selectedPath);
+      setSearchQuery("");
+      setSearchSuggestions([]);
+      setShowSearch(false);
+      return;
+    }
     if (!searchQuery.trim()) return;
-
     const query = searchQuery.toLowerCase().trim();
-    const searchMappings = {
-      // Digital Marketing related
-      "digital marketing": "/services/Digital_Marketing",
-      marketing: "/services/Digital_Marketing",
-      seo: "/services/Digital_Marketing",
-      "social media": "/services/Digital_Marketing",
-      "google ads": "/services/Digital_Marketing",
-      "meta ads": "/services/Digital_Marketing",
-      "facebook ads": "/services/Digital_Marketing",
-      "instagram marketing": "/services/Digital_Marketing",
-      ppc: "/services/Digital_Marketing",
-      sem: "/services/Digital_Marketing",
-      "content marketing": "/services/Digital_Marketing",
-      "email marketing": "/services/Digital_Marketing",
-      "online marketing": "/services/Digital_Marketing",
-      "digital advertising": "/services/Digital_Marketing",
-
-      // Graphic Design related
-      "graphic design": "/services/Graphic_designing_services",
-      "graphic designing": "/services/Graphic_designing_services",
-      design: "/services/Graphic_designing_services",
-      logo: "/services/Graphic_designing_services",
-      branding: "/services/Graphic_designing_services",
-      "business card": "/services/Graphic_designing_services",
-      brochure: "/services/Graphic_designing_services",
-      flyer: "/services/Graphic_designing_services",
-      poster: "/services/Graphic_designing_services",
-      banner: "/services/Graphic_designing_services",
-      "creative design": "/services/Graphic_designing_services",
-      "visual design": "/services/Graphic_designing_services",
-      "print design": "/services/Graphic_designing_services",
-
-      // Web & App Development related
-      "web development": "/services/Website_and_App_Development",
-      "website development": "/services/Website_and_App_Development",
-      "app development": "/services/Website_and_App_Development",
-      "mobile app": "/services/Website_and_App_Development",
-      website: "/services/Website_and_App_Development",
-      "web design": "/services/Website_and_App_Development",
-      "responsive design": "/services/Website_and_App_Development",
-      frontend: "/services/Website_and_App_Development",
-      backend: "/services/Website_and_App_Development",
-      "full stack": "/services/Website_and_App_Development",
-      react: "/services/Website_and_App_Development",
-      javascript: "/services/Website_and_App_Development",
-      html: "/services/Website_and_App_Development",
-      css: "/services/Website_and_App_Development",
-      "ios app": "/services/Website_and_App_Development",
-      "android app": "/services/Website_and_App_Development",
-      "mobile development": "/services/Website_and_App_Development",
-      "custom website": "/services/Website_and_App_Development",
-
-      // IT & AI Solutions related
-      "it solutions": "/services/IT_&_AI_Solutions",
-      "ai solutions": "/services/IT_&_AI_Solutions",
-      "artificial intelligence": "/services/IT_&_AI_Solutions",
-      "machine learning": "/services/IT_&_AI_Solutions",
-      automation: "/services/IT_&_AI_Solutions",
-      "software development": "/services/IT_&_AI_Solutions",
-      saas: "/services/IT_&_AI_Solutions",
-      "billing software": "/services/IT_&_AI_Solutions",
-      "management software": "/services/IT_&_AI_Solutions",
-      "custom software": "/services/IT_&_AI_Solutions",
-      "it consulting": "/services/IT_&_AI_Solutions",
-      "tech solutions": "/services/IT_&_AI_Solutions",
-      "business automation": "/services/IT_&_AI_Solutions",
-      crm: "/services/IT_&_AI_Solutions",
-      erp: "/services/IT_&_AI_Solutions",
-
-      // Business Consulting related
-      "business consulting": "/services/Business_Consultings",
-      consulting: "/services/Business_Consultings",
-      "business setup": "/services/Business_Consultings",
-      "business structure": "/services/Business_Consultings",
-      "legal process": "/services/Business_Consultings",
-      "market guidance": "/services/Business_Consultings",
-      "hr policy": "/services/Business_Consultings",
-      "business strategy": "/services/Business_Consultings",
-      "startup consulting": "/services/Business_Consultings",
-      "business planning": "/services/Business_Consultings",
-      "market research": "/services/Business_Consultings",
-      "business development": "/services/Business_Consultings",
-
-      // General pages
-      about: "/about",
-      "about us": "/about",
-      careers: "/Careers",
-      jobs: "/Careers",
-      demo: "/GetDemo",
-      "get demo": "/GetDemo",
-      home: "/",
-      contact: "/contact",
-      "contact us": "/contact",
-      project: "/Project",
-      projects: "/Project",
-      portfolio: "/Project",
-    };
-
-    // Find the best match
     const matchedRoute = Object.keys(searchMappings).find((key) => {
-      // Exact match first
       if (query === key) return true;
-      // Then check if query contains the key or vice versa
       return query.includes(key) || key.includes(query);
     });
-
     if (matchedRoute) {
-      navigate(searchMappings[matchedRoute]);
+      navigate(searchMappings[matchedRoute].path);
     } else {
-      // If no match found, redirect to contact page
       navigate("/contact");
     }
-
     setSearchQuery("");
+    setSearchSuggestions([]);
     setShowSearch(false);
   };
 
@@ -358,12 +319,12 @@ export default function Navbar() {
 
               {/* Search Dropdown */}
               {showSearch && (
-                <div className="absolute top-full right-0 mt-2 w-80 bg-white/98 backdrop-blur-xl shadow-2xl rounded-2xl border border-gray-200 p-4 z-50">
+                <div className="absolute top-full right-0 mt-2 w-96 bg-white/98 backdrop-blur-xl shadow-2xl rounded-2xl border border-gray-200 p-4 z-50">
                   <form onSubmit={handleSearch} className="relative">
                     <input
                       type="text"
                       value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onChange={(e) => handleSearchInput(e.target.value)}
                       placeholder="Search: Digital Marketing, Web Dev, AI, Design..."
                       className="w-full pl-10 pr-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#027A55] focus:outline-none transition-all duration-300 text-sm"
                       autoFocus
@@ -373,6 +334,30 @@ export default function Navbar() {
                       className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
                     />
                   </form>
+                  {searchSuggestions.length > 0 && (
+                    <div className="mt-3 max-h-64 overflow-y-auto">
+                      <p className="text-xs text-gray-500 mb-2 px-2">Suggestions:</p>
+                      {searchSuggestions.map((item, index) => (
+                        <button
+                          key={index}
+                          onClick={() => handleSearch(null, item.path)}
+                          className="w-full text-left px-3 py-2.5 hover:bg-gradient-to-r hover:from-[#013026]/5 hover:to-[#027A55]/5 rounded-lg transition-all duration-200 group flex items-center justify-between"
+                        >
+                          <div className="flex items-center gap-3">
+                            <span className="w-1.5 h-1.5 bg-gradient-to-r from-[#013026] to-[#027A55] rounded-full group-hover:scale-150 transition-transform"></span>
+                            <div>
+                              <p className="text-sm font-medium text-gray-700 group-hover:text-[#012017da]">{item.title}</p>
+                              <p className="text-xs text-gray-500">{item.category}</p>
+                            </div>
+                          </div>
+                          <ChevronDown size={14} className="-rotate-90 text-gray-400 group-hover:text-[#027A55] transition-colors" />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {searchQuery && searchSuggestions.length === 0 && (
+                    <p className="text-sm text-gray-500 mt-3 px-2">No results found. Try "Digital Marketing", "Web Development", or "AI Solutions"</p>
+                  )}
                 </div>
               )}
             </div>
@@ -426,13 +411,13 @@ export default function Navbar() {
               Get Started
             </NavLink>
             {/* Mobile Search Bar - Full width below 1294px */}
-            <div className="flex-1 max-w-xs">
+            <div className="flex-1 max-w-xs relative">
               <form onSubmit={handleSearch}>
                 <div className="relative">
                   <input
                     type="text"
                     value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={(e) => handleSearchInput(e.target.value)}
                     placeholder="Search..."
                     className="w-full pl-8 pr-3 py-2 border-2 border-gray-300 rounded-lg focus:border-[#027A55] focus:outline-none transition-all duration-300 text-sm max-[460px]:hidden"
                   />
@@ -442,6 +427,23 @@ export default function Navbar() {
                   />
                 </div>
               </form>
+              {searchSuggestions.length > 0 && searchQuery && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white/98 backdrop-blur-xl shadow-2xl rounded-xl border border-gray-200 p-2 z-50 max-[460px]:hidden">
+                  {searchSuggestions.map((item, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleSearch(null, item.path)}
+                      className="w-full text-left px-3 py-2 hover:bg-gradient-to-r hover:from-[#013026]/5 hover:to-[#027A55]/5 rounded-lg transition-all duration-200 flex items-center gap-2"
+                    >
+                      <span className="w-1 h-1 bg-gradient-to-r from-[#013026] to-[#027A55] rounded-full"></span>
+                      <div>
+                        <p className="text-xs font-medium text-gray-700">{item.title}</p>
+                        <p className="text-[10px] text-gray-500">{item.category}</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Search Icon for screens below 460px */}
@@ -456,12 +458,12 @@ export default function Navbar() {
                 />
               </button>
               {showSearch && (
-                <div className="absolute top-full right-0 mt-2 w-72 bg-white/98 backdrop-blur-xl shadow-2xl rounded-2xl border border-gray-200 p-4 z-50">
+                <div className="absolute top-full right-0 mt-2 w-50 bg-white/98 backdrop-blur-xl shadow-2xl rounded-2xl border border-gray-200 p-4 z-50">
                   <form onSubmit={handleSearch} className="relative">
                     <input
                       type="text"
                       value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onChange={(e) => handleSearchInput(e.target.value)}
                       placeholder="Search: Digital Marketing, Web Dev, AI, Design..."
                       className="w-full pl-10 pr-4 py-3 border-2 border-gray-300 rounded-xl focus:border-[#027A55] focus:outline-none transition-all duration-300 text-sm"
                       autoFocus
@@ -471,6 +473,29 @@ export default function Navbar() {
                       className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
                     />
                   </form>
+                  {searchSuggestions.length > 0 && (
+                    <div className="mt-3 max-h-60 overflow-y-auto ">
+                      <p className="text-xs text-gray-500 mb-2 px-2">Suggestions:</p>
+                      {searchSuggestions.map((item, index) => (
+                        <button
+                          key={index}
+                          onClick={() => handleSearch(null, item.path)}
+                          className="w-full text-left px-3 py-2.5 hover:bg-gradient-to-r hover:from-[#013026]/5 hover:to-[#027A55]/5 rounded-lg transition-all duration-200 group"
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 bg-gradient-to-r from-[#013026] to-[#027A55] rounded-full group-hover:scale-150 transition-transform"></span>
+                            <div>
+                              <p className="text-sm font-medium text-gray-700 group-hover:text-[#012017da]">{item.title}</p>
+                              <p className="text-xs text-gray-500">{item.category}</p>
+                            </div>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {searchQuery && searchSuggestions.length === 0 && (
+                    <p className="text-xs text-gray-500 mt-3 px-2">No results found</p>
+                  )}
                 </div>
               )}
             </div>

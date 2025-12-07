@@ -79,21 +79,8 @@ function Home_heading() {
         "
       >
         {/* MAIN HEADING */}
-        <div className="w-full flex justify-center px-4">
-          <img
-            src="/Doha_Skylines_Illustration_For_Homepage-removebg-preview_imgupscaler.ai_V1(Fast)_4K.png"
-            alt="hero"
-            className="
-      mt-20
-      w-full
-      max-w-[1300px]
-      h-auto
-      object-contain
-      mx-auto
-    "
-          />
-        </div>
 
+        <div className="absolute inset-0 bg-[url('/Bulinding.png.jpg')] opacity-10 bg-cover bg-center"></div>
         <h1
           className="
             font-semibold 
@@ -130,7 +117,7 @@ function Home_heading() {
             text-sm sm:text-lg
             hover:scale-110 
             transition-all duration-300
-            mb-[200px]
+            mb-[150px]
             sm:mb-[250px]
             lg:mb-[300px]
             relative z-10
@@ -147,6 +134,7 @@ function Home_heading() {
             flex absolute bottom-0 left-1/2 -translate-x-1/2
             w-[380px] sm:w-[450px] md:w-[500px] lg:w-[650px] xl:w-[700px]
             pb-[200px]
+            h-[800px]
             translate-y-[65%]
            sm:translate-y-[62%]
            lg:translate-y-[59%]
