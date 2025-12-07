@@ -3,7 +3,7 @@ import { jsPDF } from "jspdf";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import axios from "axios";
-import { FaFilePdf, FaFileExcel, FaSyncAlt } from "react-icons/fa";
+import { FaFilePdf, FaFileExcel, FaSyncAlt, FaEye, FaDownload } from "react-icons/fa";
 
 function ApplyData() {
   const [applyData, setApplyData] = useState([]);
@@ -118,7 +118,13 @@ function ApplyData() {
     doc.save("apply_form.pdf");
   };
 
-  // DOWNLOAD CV FUNCTION
+  // VIEW CV
+  const viewCV = (cvFile) => {
+    if (!cvFile) return alert("No CV available!");
+    window.open(`${api_url}/uploads/${cvFile}`, "_blank");
+  };
+
+  // DOWNLOAD CV
   const downloadCV = async (cvFile) => {
     if (!cvFile) return alert("No CV available!");
     try {
@@ -209,27 +215,13 @@ function ApplyData() {
             <table className="min-w-full">
               <thead>
                 <tr className="bg-gradient-to-r from-green-600 to-emerald-700 text-white">
-                  <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">
-                    Name
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">
-                    Email
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">
-                    Mobile
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">
-                    Qualification
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">
-                    Message
-                  </th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold uppercase tracking-wider">
-                    CV
-                  </th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold uppercase tracking-wider">
-                    Action
-                  </th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Name</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Email</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Mobile</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Qualification</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Message</th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold uppercase tracking-wider">CV</th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold uppercase tracking-wider">Action</th>
                 </tr>
               </thead>
 
@@ -237,9 +229,7 @@ function ApplyData() {
                 {applyData.map((item, index) => (
                   <tr
                     key={item._id}
-                    className={`transition-all hover:bg-green-50 ${
-                      index % 2 === 0 ? "bg-white" : "bg-gray-50"
-                    }`}
+                    className={`transition-all hover:bg-green-50 ${index % 2 === 0 ? "bg-white" : "bg-gray-50"}`}
                   >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
@@ -247,18 +237,12 @@ function ApplyData() {
                           {item.name.charAt(0).toUpperCase()}
                         </div>
                         <div className="ml-4">
-                          <div className="text-sm font-bold text-gray-900">
-                            {item.name}
-                          </div>
+                          <div className="text-sm font-bold text-gray-900">{item.name}</div>
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-sm font-bold text-gray-700">
-                      {item.email}
-                    </td>
-                    <td className="px-6 py-4 text-sm font-bold text-gray-700">
-                      {item.mobile}
-                    </td>
+                    <td className="px-6 py-4 text-sm font-bold text-gray-700">{item.email}</td>
+                    <td className="px-6 py-4 text-sm font-bold text-gray-700">{item.mobile}</td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className="px-3 py-1 inline-flex text-xs font-bold rounded-full bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border border-green-200">
                         {item.qualification}
@@ -269,18 +253,24 @@ function ApplyData() {
                         {item.message}
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-6 py-4 text-center flex flex-col gap-2 items-center justify-center">
                       {item.cv ? (
-                        <button
-                          onClick={() => downloadCV(item.cv)}
-                          className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg shadow-md hover:shadow-lg transition-all font-bold"
-                        >
-                          Views
-                        </button>
+                        <>
+                          <button
+                            onClick={() => viewCV(item.cv)}
+                            className="flex items-center gap-2 px-4 py-1 bg-blue-600 text-white rounded-lg shadow-md hover:shadow-lg transition-all text-sm font-bold"
+                          >
+                            <FaEye /> View
+                          </button>
+                          <button
+                            onClick={() => downloadCV(item.cv)}
+                            className="flex items-center gap-2 px-4 py-1 bg-green-600 text-white rounded-lg shadow-md hover:shadow-lg transition-all text-sm font-bold"
+                          >
+                            <FaDownload /> Download
+                          </button>
+                        </>
                       ) : (
-                        <span className="text-gray-500 font-semibold">
-                          No CV
-                        </span>
+                        <span className="text-gray-500 font-semibold">No CV</span>
                       )}
                     </td>
                     <td className="px-6 py-4 text-center">
