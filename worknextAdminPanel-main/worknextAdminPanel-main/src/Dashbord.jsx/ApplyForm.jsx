@@ -34,12 +34,10 @@ function ApplyData() {
   // SEARCH
   const handleSearch = (value) => {
     const search = value.toLowerCase();
-
     if (search.trim() === "") {
       setApplyData(originalData);
       return;
     }
-
     const filtered = originalData.filter(
       (item) =>
         item.name.toLowerCase().includes(search) ||
@@ -48,7 +46,6 @@ function ApplyData() {
         item.qualification.toLowerCase().includes(search) ||
         item.message.toLowerCase().includes(search)
     );
-
     setApplyData(filtered);
   };
 
@@ -80,9 +77,7 @@ function ApplyData() {
       { header: "CV", key: "cv", width: 30 },
     ];
 
-    applyData.forEach((item) => {
-      sheet.addRow(item);
-    });
+    applyData.forEach((item) => sheet.addRow(item));
 
     const buffer = await workbook.xlsx.writeBuffer();
     saveAs(new Blob([buffer]), "apply_form.xlsx");
@@ -91,7 +86,6 @@ function ApplyData() {
   // PDF
   const downloadPDF = () => {
     const doc = new jsPDF("p", "mm", "a4");
-
     doc.setFillColor(0, 0, 0);
     doc.rect(0, 0, 210, 18, "F");
     doc.setTextColor(255, 255, 255);
@@ -105,10 +99,8 @@ function ApplyData() {
         doc.addPage();
         y = 20;
       }
-
       doc.setFontSize(14);
       doc.text(`Record #${index + 1}`, 10, y);
-
       doc.setFontSize(12);
       doc.text(`Name: ${item.name}`, 10, y + 10);
       doc.text(`Email: ${item.email}`, 10, y + 18);
@@ -117,7 +109,6 @@ function ApplyData() {
 
       const msgLines = doc.splitTextToSize(item.message, 180);
       const height = msgLines.length * 6 + 8;
-
       doc.rect(10, y + 45, 190, height);
       doc.text(msgLines, 12, y + 50);
 
@@ -125,6 +116,26 @@ function ApplyData() {
     });
 
     doc.save("apply_form.pdf");
+  };
+
+  // DOWNLOAD CV FUNCTION
+  const downloadCV = async (cvFile) => {
+    if (!cvFile) return alert("No CV available!");
+    try {
+      const response = await axios.get(`${api_url}/uploads/${cvFile}`, {
+        responseType: "blob",
+      });
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", cvFile);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (error) {
+      console.error("Download error:", error);
+      alert("Unable to download CV!");
+    }
   };
 
   if (loading) {
@@ -150,17 +161,13 @@ function ApplyData() {
 
         {/* SEARCH + BUTTONS */}
         <div className="flex flex-col sm:flex-row items-center gap-3">
-          {/* SEARCH BAR */}
           <input
             type="text"
             placeholder="Search…"
             onChange={(e) => handleSearch(e.target.value)}
             className="px-4 py-2 w-64 border rounded-lg shadow-sm"
           />
-
-          {/* BUTTONS */}
           <div className="flex gap-3">
-            {/* REFRESH */}
             <button
               onClick={fetchApplyData}
               className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md"
@@ -169,7 +176,6 @@ function ApplyData() {
               <span className="hidden md:block">Refresh</span>
             </button>
 
-            {/* PDF */}
             <button
               onClick={downloadPDF}
               className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg shadow-md"
@@ -178,7 +184,6 @@ function ApplyData() {
               <span className="hidden md:block">PDF</span>
             </button>
 
-            {/* EXCEL */}
             <button
               onClick={downloadExcel}
               className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg shadow-md"
@@ -248,44 +253,36 @@ function ApplyData() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
-                      <div className="text-sm font-bold text-gray-700">
-                        {item.email}
-                      </div>
+                    <td className="px-6 py-4 text-sm font-bold text-gray-700">
+                      {item.email}
+                    </td>
+                    <td className="px-6 py-4 text-sm font-bold text-gray-700">
+                      {item.mobile}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-bold text-gray-700">
-                        {item.mobile}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-3 py-1 inline-flex text-xs leading-5 font-bold rounded-full bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border border-green-200">
+                      <span className="px-3 py-1 inline-flex text-xs font-bold rounded-full bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border border-green-200">
                         {item.qualification}
                       </span>
                     </td>
-
                     <td className="px-6 py-4">
                       <div className="max-w-xs max-h-20 overflow-y-auto p-3 bg-gradient-to-br from-gray-50 to-green-50 border border-green-200 rounded-lg text-sm font-semibold text-gray-700 shadow-inner">
                         {item.message}
                       </div>
                     </td>
-
                     <td className="px-6 py-4 text-center">
                       {item.cv ? (
-                        <a
-                          href={`${api_url}/uploads/${item.cv}`}
-                          download
-                          className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg hover:from-green-600 hover:to-emerald-700 shadow-md hover:shadow-lg transition-all font-bold inline-block"
+                        <button
+                          onClick={() => downloadCV(item.cv)}
+                          className="px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg shadow-md hover:shadow-lg transition-all font-bold"
                         >
                           Download
-                        </a>
+                        </button>
                       ) : (
                         <span className="text-gray-500 font-semibold">
                           No CV
                         </span>
                       )}
                     </td>
-
                     <td className="px-6 py-4 text-center">
                       <button
                         onClick={() => deleteRow(item._id)}
